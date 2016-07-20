@@ -1,0 +1,179 @@
+﻿.margin-bottom-05
+{
+	margin-bottom:0.5em;
+}
+
+.margin-top-05
+{
+	margin-top:0.5em;
+}
+
+.margin-top-2
+{
+    margin-top:2em;
+}
+
+.cursor-pointer
+{
+	cursor:pointer;
+}
+
+.font-08
+{
+    font-size:0.8em;
+}
+
+#divAlert
+{
+	
+}
+
+.checkbox input
+{
+	margin-left:0px !important;
+}
+
+.pleaseWait
+{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	text-align:center;
+	/*background-color:#000000;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;*/
+	background:rgba(0,0,0,0.4);
+	z-index:1000;
+}
+
+.pleaseWait span
+{
+	padding:20px;
+	border-radius:5px;
+	color:#000000;
+	background:rgba(255,255,255,1);
+	position:relative;
+	top:50%;
+	border:2px solid #444444;
+	/*filter:alpha(opacity=100);
+	-moz-opacity:1;
+	opacity:1;*/
+}
+
+.tab-content
+{
+	padding:10px;
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+	border-bottom:1px solid #dddddd;
+}
+
+.popup
+{
+	padding:40px;
+	background-color:#eeeeee;
+}
+
+.messageBoxWrapper
+{
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	text-align:center;
+	background:rgba(0,0,0,0.1);
+	z-index:1000;
+}
+
+.messageBoxWrapper .messageBox
+{
+	padding:20px;
+	background:rgba(255,255,255,1);
+	color:#000000;
+	position:fixed;
+	top:50%;
+	border:2px solid #444444;
+	width:300px;
+	left:40%;
+	box-shadow:5px 5px 5px 0px #444444;
+	border-radius:10px;
+}
+
+.messageBoxWrapper .messageBox button
+{
+	
+}
+
+.newOrder
+{
+    display:block;
+    width:20px;
+    height:20px;
+    background-color:#ff0000;
+    border-radius:1em;
+    color:#ff0000;
+}
+
+.graph .chartLabel
+{
+    width:100%;
+    text-align:center;
+    padding:1em;
+    background-color:#eeeeee;
+    font-weight:bold;
+    margin-bottom:2em;
+}
+
+.graph
+{
+
+}
+
+.graph .wrapper
+{
+    position:relative;
+}
+
+.graph .pleaseWait
+{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:rgba(200, 200, 200, 0.5);
+}
+
+.graph .pleaseWait span
+{
+    padding:2em;
+    border-radius:0.5em;
+    background:rgba(255,255,255,1);
+    border:1px solid #eeeeee;
+}
+
+.legend
+{
+    width:100%;
+}
+
+.legend .title
+{
+    display:block;
+    line-height:1.5em;
+    margin-bottom:0.5em;
+    padding:0 0.3em;
+}
+
+.legend .color-sample
+{
+    display:block;
+    float:left;
+    border:2px solid #999999;
+    border-radius:0.5em;
+    width:1em;
+    height:1em;
+    margin-right:0.5em;
+}
