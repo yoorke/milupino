@@ -1,0 +1,313 @@
+﻿html, body, div, h1, h2, h3, p, ul, li
+{
+	margin:0;
+	padding:0;
+	font-family:Arial;
+	font-size:12px;
+}
+
+a
+{
+	color:inherit;
+	text-decoration:none;
+}
+
+#leftMenu
+{
+	width:200px;
+	background-color:#eeeeee;
+	border-right:1px solid #999999;
+	border-bottom:1px solid #999999;
+	height:500px;
+	float:left;
+}
+
+.leftMenuItem
+{
+	border-bottom:1px solid #cccccc;
+}
+
+.lastItem
+{
+	margin-top:50px;
+}
+
+.leftMenuItem h2
+{
+	font-size:12px;
+}
+
+.leftMenuItem h2 a
+{
+	display:block;
+	padding:10px 2px;
+}
+
+.leftMenuItem h2 a:hover
+{
+	background-color:Highlight;
+	color:#ffffff;
+}
+
+#content
+{
+	float:left;
+	/*width:760px;*/
+}
+
+.button
+{
+	display:inline-block;
+	border:1px solid #999999;
+	background-color:#eeeeee;
+	background:linear-gradient(to top, #dddddd, #eeeeee);
+	padding:5px;
+	border-radius:5px;
+	margin:10px;
+}
+
+p.row
+{
+	margin:10px 5px;
+	/*height:20px;*/
+}
+
+p.row span
+{
+	font-size:14px;
+	display:inline-block;
+	background-color:#eeeeee;
+	padding:5px;
+	border:1px solid #999999;
+	width:200px;
+	text-align:right;
+	height:15px;
+}
+
+.label
+{
+	width:100px;
+	text-align:right;
+	display:inline-block;
+}
+
+.labelProductCategory
+{
+	width:300px;
+	text-align:left;
+	display:inline-block;
+}
+
+.grid
+{
+    font-family: tahoma;
+    font-size: 12px;
+    border: solid 1px #7f7f7f;
+    border-collapse: collapse;
+    color: #333333;
+    
+}
+
+.grid th
+{
+    border-color: #989898 #cbcbcb #989898 #989898;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 1px;
+    color: Menu;
+    padding: 4px 5px 4px 10px;
+    vertical-align: bottom;
+    text-align: left;
+    background-color: Highlight;
+}
+.grid td
+{
+    color: #333333;
+    padding: 4px 1px 4px 1px;
+    border-bottom: solid 1px #BBD9EE;
+    padding: 4px 5px 4px 10px;
+}
+.gridRow
+{
+    background-color: #ffffff;
+}
+
+.gridAltRow
+{
+    background-color: #eeeeee;
+}
+
+.gridEditRow
+{
+    background-color: #0DC6DE;
+}
+.gridFooterRow
+{
+    background-color: #E8ECED;
+}
+.grid tr.gridRow:hover, .grid tr.gridAltRow:hover
+{
+    font-family: tahoma;
+    font-size: 12px;
+    border: solid 1px #7f7f7f;
+    border-collapse: collapse;
+    background-color: #99BBE1;
+}
+
+.hCursor
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+#topMenu
+{
+	/*height:100px;*/
+	background:linear-gradient(to top, #eeeeee, #ffffff);
+	border-bottom:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+	padding:10px;
+	overflow:hidden;
+}
+
+.column
+{
+	/*border-right:1px solid #dddddd;*/
+	padding:0px 5px;
+	width:350px;
+	float:left;
+	margin-bottom:20px;
+}
+
+.column50
+{
+	width:28px;
+	float:left;
+	padding-top:50px;
+}
+
+#mainContent
+{
+	padding:10px;
+}
+
+#productImages
+{
+	/*border:1px solid #eeeeee;*/
+	padding:2px;
+	overflow:hidden;
+}
+
+.productImage
+{
+	margin:5px 10px;
+	width:100px;
+	height:100px;
+	border:1px solid #eeeeee;
+	text-align:center;
+	float:left;
+}
+
+.productImage .imageUrl
+{
+	display:block;
+	word-wrap:break-word;
+}
+
+.status
+{
+	width:100%;
+	padding:5px 0px;
+	text-align:center;
+	border:1px solid #00ff00;
+	margin:5px;
+	display:block;
+}
+
+.alignRight
+{
+	text-align:right;
+}
+
+img.promotion
+{
+	margin-left:50px;
+	border:1px solid #eeeeee;
+	padding:5px;
+}
+
+.loginBox
+{
+	width:100%;
+	text-align:center;
+}
+
+.login
+{
+	width:220px;
+	margin-top:100px;
+	margin-left:100px;
+}
+
+.textBox
+{
+	
+}
+
+.loginButton
+{
+	
+}
+
+.pleaseWait
+{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	text-align:center;
+	background-color:#000000;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;
+}
+
+.pleaseWait span
+{
+	padding:5px;
+	border-radius:5px;
+	color:#000000;
+	background-color:#ffffff;
+	position:relative;
+	top:50%;
+}
+
+.column300
+{
+	float:left;
+	width:300px;
+}
+
+.floatRight
+{
+	float:right;
+}
+
+.popup
+{
+	background-color:#dddddd;
+	margin:0px auto;
+	width:300px;
+	position:relative;
+	border:1px solid #999999;
+}
+
+.modalBackground
+{
+	position:absolute;
+	top:0px;
+	left:0px;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity:0.6;
+}

@@ -1,0 +1,1209 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using eshopBE;
+using eshopUtilities;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.Configuration;
+using System.Web;
+
+namespace eshopDL
+{
+    public class ProductDL
+    {
+        #region GetProducts
+
+        private List<Product> GetProducts(int productID, string code, string supplierCode, List<eshopBE.AttributeValue> attributes, int categoryID, int supplierID, bool? isApproved, bool? isActive, int? brandID)
+        {
+            List<Product> products = null;
+            bool whereExists = false;
+
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT product.productID, code, supplierCode, brand.brandID, product.name, description, price, webPrice, brand.name, isApproved, isActive, isLocked, isInStock FROM product INNER JOIN brand ON product.brandID=brand.brandID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        if (productID > 0)
+                        {
+                            objComm.CommandText += " WHERE product.productID=@productID";
+                            objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                            whereExists = true;
+                        }
+                        else if (code != string.Empty)
+                        {
+                            objComm.CommandText += " WHERE product.code=@code";
+                            objComm.Parameters.Add("@code", SqlDbType.NVarChar, 50).Value = code;
+                            whereExists = true;
+                        }
+                        else if (supplierCode != string.Empty)
+                        {
+                            objComm.CommandText += " WHERE product.supplierCode=@supplierCode";
+                            objComm.Parameters.Add("@supplierCode", SqlDbType.NVarChar, 50).Value = supplierCode;
+                            whereExists = true;
+                        }
+                        else if (attributes != null || categoryID > 0)
+                        {
+                            if (attributes != null)
+                                for (int i = 0; i < attributes.Count; i++)
+                                    objComm.CommandText += " INNER JOIN productAttributeValue as a" + (i + 1).ToString() + " ON product.productID=a" + (i + 1).ToString() + ".productID";
+
+                            if (categoryID > 0)
+                                objComm.CommandText += " INNER JOIN productCategory ON product.productID=productCategory.productID";
+
+                            if (attributes != null)
+                            {
+                                for (int i = 0; i < attributes.Count; i++)
+                                {
+                                    if (!whereExists)
+                                    {
+                                        objComm.CommandText += " WHERE a" + (i + 1).ToString() + ".attributeValueID=@attributeValueID" + (i + 1).ToString();
+                                        whereExists = true;
+                                    }
+                                    else
+                                        objComm.CommandText += " AND a" + (i + 1).ToString() + ".attributeValueID=@attributeValueID" + (i + 1).ToString();
+
+                                    objComm.Parameters.Add("@attributeValueID" + (i + 1).ToString(), SqlDbType.Int).Value = attributes[i].AttributeValueID;
+                                }
+                            }
+
+                            if (categoryID > 0)
+                            {
+                                if (!whereExists)
+                                {
+                                    objComm.CommandText += " WHERE productCategory.categoryID=@categoryID";
+                                    whereExists = true;
+                                }
+                                else
+                                    objComm.CommandText += " AND productCategory.categoryID=@categoryID";
+
+                                objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+                            }
+                        }
+
+                        if (supplierID > -1)
+                        {
+                            objComm.CommandText += (whereExists) ? " AND supplierID=@supplierID" : " WHERE supplierID=@supplierID";
+                            objComm.Parameters.Add("@supplierID", SqlDbType.Int).Value = supplierID;
+                            whereExists = true;
+                        }
+
+                        if (isApproved != null)
+                        {
+                            objComm.CommandText += (whereExists) ? " AND isApproved=@isApproved" : " WHERE isApproved=@isApproved";
+                            objComm.Parameters.Add("@isApproved", SqlDbType.Bit).Value = isApproved;
+                            whereExists = true;
+                        }
+
+                        if (isActive != null)
+                        {
+                            objComm.CommandText += (whereExists) ? " AND isActive=@isActive" : " WHERE isActive=@isActive";
+                            objComm.Parameters.Add("@isActive", SqlDbType.Bit).Value = isActive;
+                            whereExists = true;
+                        }
+
+                        if (brandID != null)
+                        {
+                            objComm.CommandText += (whereExists) ? " AND brand.brandID=@brandID" : " WHERE brand.brandID=@brandID";
+                            objComm.Parameters.Add("@brandID", SqlDbType.Int).Value = brandID;
+                            whereExists = true;
+                        }
+
+                        using (SqlDataReader reader = objComm.ExecuteReader())
+                        {
+                            Product product;
+                            if (reader.HasRows)
+                                products = new List<Product>();
+
+                            while (reader.Read())
+                            {
+                                product = new Product();
+                                product.ProductID = reader.GetInt32(0);
+                                product.Code = reader.GetString(1);
+                                product.SupplierCode = reader.GetString(2);
+                                product.Brand = new Brand(reader.GetInt32(3), reader.GetString(8));
+                                product.Name = reader.GetString(4);
+                                product.Description = reader.GetString(5);
+                                product.Price = reader.GetDouble(6);
+                                product.WebPrice = reader.GetDouble(7);
+                                product.IsApproved = reader.GetBoolean(9);
+                                product.IsActive = reader.GetBoolean(10);
+                                product.IsLocked = reader.GetBoolean(11);
+                                product.IsInStock = reader.GetBoolean(12);
+                                product.Images = GetProductImages(product.ProductID);
+
+                                products.Add(product);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while loading products list", ex);
+                    }
+
+                }
+            }
+            return products;
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            return GetProducts(-1, string.Empty, string.Empty, null, -1, -1, null, null, null);
+        }
+
+        public List<Product> GetProducts(List<AttributeValue> attributes)
+        {
+            return GetProducts(-1, string.Empty, string.Empty, attributes, -1, -1, null, null, null);
+        }
+
+        public List<Product> GetProductsForCategory(int categoryID)
+        {
+            return GetProducts(-1, string.Empty, string.Empty, null, categoryID, -1, null, null, null);
+        }
+
+        public List<Product> GetProducts(int categoryID, int supplierID, bool? isApproved, bool? isActive, int? brandID)
+        {
+            return GetProducts(-1, string.Empty, string.Empty, null, categoryID, supplierID, isApproved, isActive, brandID);
+        }
+
+        public List<Product> GetProducts(int categoryID, List<string> brandsID, List<AttributeValue> attributeValues, string sort, double priceFrom, double priceTo)
+        {
+            List<Product> products = null;
+            int tempAttributeID;
+            int tableIndex;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT product.productID, code, product.name, product.description, product.price, webPrice, brand.name, productImageUrl.imageUrl, promotionProduct.price, promotion.imageUrl, promotion.dateFrom, promotion.dateTo, category.name FROM product INNER JOIN brand ON product.brandID=brand.brandID INNER JOIN productImageUrl ON product.productID=productImageUrl.productID INNER JOIN productCategory ON product.productID=productCategory.productID LEFT JOIN promotionProduct ON product.productID=promotionProduct.productID LEFT JOIN promotion ON promotionProduct.promotionID=promotion.promotionID INNER JOIN category ON productCategory.categoryID=category.categoryID", objConn))
+                {
+                    if(attributeValues.Count > 0)
+                    {
+                        tempAttributeID = 0;
+                        tableIndex = 0;
+                        for (int i = 0; i < attributeValues.Count; i++)
+                        {
+                            if (attributeValues[i].AttributeID != tempAttributeID)
+                            {
+                                tableIndex++;
+                                objComm.CommandText += " INNER JOIN productAttributeValue AS a" + tableIndex.ToString() + " ON product.productID=a" + tableIndex.ToString() + ".productID";
+                                tempAttributeID = attributeValues[i].AttributeID;
+                            }
+                        }
+                    }
+
+                    objComm.CommandText += " WHERE productImageUrl.sortOrder=1 AND product.isActive=1 AND product.isApproved=1";
+                    objComm.CommandText += " AND productCategory.categoryID=@categoryID";
+                    objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+
+                    if (priceFrom > 0)
+                    {
+                        objComm.CommandText += " AND webPrice>=@priceFrom";
+                        objComm.Parameters.Add("@priceFrom", SqlDbType.Float).Value = priceFrom;
+                    }
+                    if (priceTo > 0)
+                    {
+                        objComm.CommandText += " AND webPrice<=@priceTo";
+                        objComm.Parameters.Add("@priceTo", SqlDbType.Float).Value = priceTo;
+                    }
+
+                    if (brandsID.Count > 0)
+                    {
+                        for (int i = 0; i < brandsID.Count; i++)
+                        {
+                            if (i == 0)
+                                objComm.CommandText += " AND (brand.brandID=@brandID" + (i + 1).ToString();
+                            else
+                                objComm.CommandText += " OR brand.brandID=@brandID" + (i + 1).ToString();
+
+                            objComm.Parameters.Add("@brandID" + (i + 1).ToString(), SqlDbType.Int).Value = brandsID[i];
+
+                            if (i == brandsID.Count - 1)
+                                objComm.CommandText += ")";
+                        }
+                    }
+
+                    tempAttributeID = 0;
+                    tableIndex = 0;
+                    for (int i = 0; i < attributeValues.Count; i++)
+                    {
+                        if (attributeValues[i].AttributeID != tempAttributeID)
+                        {
+                            tableIndex++;
+                            objComm.CommandText += " AND (a" + tableIndex.ToString() + ".attributeValueID=@attributeValueID" + (i + 1).ToString();
+                            tempAttributeID = attributeValues[i].AttributeID;
+
+                        }
+                        else
+                            objComm.CommandText += " OR a" + tableIndex.ToString() + ".attributeValueID=@attributeValueID" + (i + 1).ToString();
+
+                        if (i < attributeValues.Count - 1)
+                            if (tempAttributeID != attributeValues[i + 1].AttributeID)
+                                objComm.CommandText += ")";
+                        if (i == attributeValues.Count - 1)
+                            objComm.CommandText += ")";
+
+
+                            //objComm.CommandText += " AND a" + (i + 1).ToString() + ".attributeValueID=@attributeValueID" + (i + 1).ToString();
+                        objComm.Parameters.Add("@attributeValueID" + (i + 1).ToString(), SqlDbType.Int).Value = attributeValues[i].AttributeValueID;
+                        
+                    }
+
+                    objComm.CommandText += " ORDER BY " + sort;
+
+                    objConn.Open();
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                            products = new List<Product>();
+                        Product product;
+                        while (reader.Read())
+                        {
+                            product = new Product();
+                            product.ProductID = reader.GetInt32(0);
+                            product.Code = reader.GetString(1);
+                            product.Name = reader.GetString(2);
+                            product.Description = reader.GetString(3);
+                            product.Price = reader.GetDouble(4);
+                            product.WebPrice = reader.GetDouble(5);
+                            product.Brand = new Brand(-1, reader.GetString(6));
+                            product.Images = new List<string>();
+                            if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/images/" + reader.GetString(7))))
+                                product.Images.Add("/images/" + reader.GetString(7));
+                            else
+                                product.Images.Add("/images/no-image.jpg");
+                            if (!Convert.IsDBNull(reader[8]))
+                            {
+                                if (reader.GetDateTime(10) < DateTime.Now && reader.GetDateTime(11) > DateTime.Now)
+                                {
+                                    product.Promotion = new Promotion();
+                                    product.Promotion.Price = reader.GetDouble(8);
+                                    product.Promotion.ImageUrl = reader.GetString(9);
+                                }
+                            }
+                            product.Categories = new List<Category>();
+                            product.Categories.Add(new Category(categoryID, reader.GetString(12), -1, string.Empty, string.Empty, 0, 0, 0, string.Empty));
+                            product.Description = GetProductAttributeValues(product.ProductID, true);
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        public List<Product> GetProductsForPromotion(int promotionID)
+        {
+            List<Product> products = null;
+            Product product=null;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT product.productID, product.code, product.name, product.description, product.price, webPrice, brand.name, productImageUrl.imageUrl, promotionProduct.price, promotion.imageUrl, category.name, category.categoryID FROM product INNER JOIN brand ON product.brandID=brand.brandID INNER JOIN productImageUrl ON product.productID=productImageUrl.productID INNER JOIN promotionProduct ON product.productID=promotionProduct.productID INNER JOIN promotion ON promotionProduct.promotionID=promotion.promotionID INNER JOIN productCategory ON productCategory.productID=product.productID INNER JOIN category ON productCategory.categoryID=category.categoryID WHERE promotion.promotionID=@promotionID AND isActive=1 AND isApproved=1 AND productImageUrl.sortOrder=1 ORDER BY product.name", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@promotionID", SqlDbType.Int).Value = promotionID;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                            products = new List<Product>();
+                        while (reader.Read())
+                        {
+                            product = new Product();
+                            product.ProductID = reader.GetInt32(0);
+                            product.Code = reader.GetString(1);
+                            product.Name = reader.GetString(2);
+                            product.Description = reader.GetString(3);
+                            product.Price = reader.GetDouble(4);
+                            product.WebPrice = reader.GetDouble(5);
+                            product.Brand = new Brand(-1, reader.GetString(6));
+                            product.Images = new List<string>();
+                            if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/images/" + reader.GetString(7))))
+                                product.Images.Add("/images/" + reader.GetString(7));
+                            else
+                                product.Images.Add("/images/no-image.jpg");
+                            product.Promotion = new Promotion();
+                            product.Promotion.Price = reader.GetDouble(8);
+                            product.Promotion.ImageUrl = reader.GetString(9);
+                            product.Categories = new List<Category>();
+                            product.Categories.Add(new Category(reader.GetInt32(11), reader.GetString(10), -1, string.Empty, string.Empty, 0, 0, 0, string.Empty));
+
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        public List<Product> GetProductsForFirstPage(int categoryID, int numberOfProducts, string orderBy)
+        {
+            List<Product> products = null;
+            Product product = null;
+
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT TOP " + numberOfProducts.ToString() + " product.productID, product.code, product.name, product.description, product.price, webPrice, brand.name, productImageUrl.imageUrl, promotionProduct.price, promotion.imageUrl, promotion.dateFrom, promotion.dateTo, category.name FROM product INNER JOIN brand ON product.brandID=brand.brandID INNER JOIN productImageUrl ON product.productID=productImageUrl.productID LEFT JOIN promotionProduct ON product.productID=promotionProduct.productID LEFT JOIN promotion ON promotionProduct.promotionID=promotion.promotionID INNER JOIN productCategory ON product.productID=productCategory.productID INNER JOIN category ON productCategory.categoryID=category.categoryID WHERE category.categoryID=@categoryID AND isActive=1 AND isApproved=1 AND productImageUrl.sortOrder=1 ORDER BY " + orderBy, objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                            products = new List<Product>();
+                        while (reader.Read())
+                        {
+                            product = new Product();
+                            product.ProductID = reader.GetInt32(0);
+                            product.Code = reader.GetString(1);
+                            product.Name = reader.GetString(2);
+                            product.Description = reader.GetString(3);
+                            product.Price = reader.GetDouble(4);
+                            product.WebPrice = reader.GetDouble(5);
+                            product.Brand = new Brand(-1, reader.GetString(6));
+                            product.Images = new List<string>();
+                            if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/images/" + reader.GetString(7))))
+                                product.Images.Add("/images/" + reader.GetString(7));
+                            else
+                                product.Images.Add("/images/no-image.jpg");
+                            if (Convert.IsDBNull(reader[8]) == false)
+                            {
+                                if (reader.GetDateTime(10) <= DateTime.Now && reader.GetDateTime(11) >= DateTime.Now)
+                                {
+                                    product.Promotion = new Promotion();
+                                    product.Promotion.Price = reader.GetDouble(8);
+                                    product.Promotion.ImageUrl = reader.GetString(9);
+                                }
+                            }
+                            product.Categories = new List<Category>();
+                            product.Categories.Add(new Category(categoryID, reader.GetString(12), -1, string.Empty, string.Empty, 0, 0, 0, string.Empty));
+                            product.Description = GetProductAttributeValues(product.ProductID, true);
+
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        #endregion
+
+        #region SaveProduct
+
+        public int SaveProduct(Product product)
+        {
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("INSERT INTO product (code, supplierCode, brandID, name, description, price, webPrice, isApproved, isActive, supplierID, vatID, insertDate, updateDate, specification, isLocked, isInStock, ean) VALUES (@code, @supplierCode, @brandID, @name, @description, @price, @webPrice, @isApproved, @isActive, @supplierID, @vatID, @insertDate, @updateDate, @specification, @isLocked, @isInStock, @ean); SELECT SCOPE_IDENTITY()", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+
+                        objComm.Parameters.Add("@code", SqlDbType.NVarChar, 50).Value = product.Code;
+                        objComm.Parameters.Add("@supplierCode", SqlDbType.NVarChar, 50).Value = product.SupplierCode;
+                        objComm.Parameters.Add("@brandID", SqlDbType.Int).Value = product.Brand.BrandID;
+                        objComm.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = product.Name;
+                        objComm.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
+                        objComm.Parameters.Add("@price", SqlDbType.Float).Value = product.Price;
+                        objComm.Parameters.Add("@webPrice", SqlDbType.Float).Value = product.WebPrice;
+                        objComm.Parameters.Add("@isApproved", SqlDbType.Bit).Value = product.IsApproved;
+                        objComm.Parameters.Add("@isActive", SqlDbType.Bit).Value = product.IsActive;
+                        objComm.Parameters.Add("@supplierID", SqlDbType.Int).Value = product.SupplierID;
+                        objComm.Parameters.Add("@vatID", SqlDbType.Int).Value = product.VatID;
+                        objComm.Parameters.Add("@insertDate", SqlDbType.DateTime).Value = product.InsertDate;
+                        objComm.Parameters.Add("@updateDate", SqlDbType.DateTime).Value = product.UpdateDate;
+                        objComm.Parameters.Add("@specification", SqlDbType.NVarChar).Value = product.Specification;
+                        objComm.Parameters.Add("@isLocked", SqlDbType.Bit).Value = product.IsLocked;
+                        objComm.Parameters.Add("@isInStock", SqlDbType.Bit).Value = product.IsInStock;
+                        objComm.Parameters.Add("@ean", SqlDbType.NVarChar, 50).Value = product.Ean;
+
+                        product.ProductID = int.Parse(objComm.ExecuteScalar().ToString());
+
+                        if (product.ProductID > 0)
+                        {
+                            if (product.Attributes != null)
+                                SaveProductAttributes(product.Attributes, product.ProductID);
+                            SaveProductCategories(product.Categories, product.ProductID);
+                            if (product.Images != null)
+                                SaveProductImages(product.Images, product.ProductID);
+                            else
+                                DeleteProductImages(product.ProductID);
+                            if (product.Promotion != null)
+                                saveProductPromotion(product.Promotion, product.ProductID);
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while saving product", ex);
+                    }
+                }
+            }
+            return product.ProductID;
+        }
+
+        public int UpdateProduct(Product product)
+        {
+            int status;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET code=@code, supplierCode=@supplierCode, brandID=@brandID, name=@name, description=@description, price=@price, webPrice=@webPrice, isApproved=@isApproved, isActive=@isActive, supplierID=@supplierID, vatID=@vatID, updateDate=@updateDate, specification=@specification, isLocked=@isLocked, isInStock=@isInStock, ean=@ean WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        if (product.Specification == string.Empty)
+                            objComm.CommandText = "UPDATE product SET code=@code, supplierCode=@supplierCode, brandID=@brandID, name=@name, description=@description, price=@price, webPrice=@webPrice, isApproved=@isApproved, isActive=@isActive, supplierID=@supplierID, vatID=@vatID, updateDate=@updateDate, isLocked=@isLocked, isInStock=@isInStock, ean=@ean WHERE productID=@productID";
+
+                        objComm.Parameters.Add("@code", SqlDbType.NVarChar, 50).Value = product.Code;
+                        objComm.Parameters.Add("@supplierCode", SqlDbType.NVarChar, 50).Value = product.SupplierCode;
+                        objComm.Parameters.Add("@brandID", SqlDbType.Int).Value = product.Brand.BrandID;
+                        objComm.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = product.Name;
+                        objComm.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
+                        objComm.Parameters.Add("@price", SqlDbType.Float).Value = product.Price;
+                        objComm.Parameters.Add("@webPrice", SqlDbType.Float).Value = product.WebPrice;
+                        objComm.Parameters.Add("@isApproved", SqlDbType.Bit).Value = product.IsApproved;
+                        objComm.Parameters.Add("@isActive", SqlDbType.Bit).Value = product.IsActive;
+                        objComm.Parameters.Add("@supplierID", SqlDbType.Int).Value = product.SupplierID;
+                        objComm.Parameters.Add("@vatID", SqlDbType.Int).Value = product.VatID;
+                        objComm.Parameters.Add("@updateDate", SqlDbType.DateTime).Value = product.UpdateDate;
+                        if (product.Specification != string.Empty)
+                            objComm.Parameters.Add("@specification", SqlDbType.NVarChar).Value = product.Specification;
+                        objComm.Parameters.Add("@isLocked", SqlDbType.Bit).Value = product.IsLocked;
+                        objComm.Parameters.Add("@isInStock", SqlDbType.Bit).Value = product.IsInStock;
+                        objComm.Parameters.Add("@ean", SqlDbType.NVarChar, 50).Value = product.Ean;
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = product.ProductID;
+
+                        status = objComm.ExecuteNonQuery();
+
+                        if (status > 0)
+                        {
+                            if (product.Attributes != null)
+                                SaveProductAttributes(product.Attributes, product.ProductID);
+                            SaveProductCategories(product.Categories, product.ProductID);
+                            if (product.Images != null)
+                                SaveProductImages(product.Images, product.ProductID);
+                            //else
+                                //DeleteProductImages(product.ProductID);
+                            if (product.Promotion != null)
+                                saveProductPromotion(product.Promotion, product.ProductID);
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while updating product", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int[] SaveProductAttributes(List<AttributeValue> attributes, int productID)
+        {
+            int[] status = new int[attributes.Count];
+            DeleteProductAttributes(productID);
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("INSERT INTO productAttributeValue (productID, attributeValueID) VALUES (@productID, @attributeValueID)", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        for (int i = 0; i < attributes.Count; i++)
+                        {
+                            objComm.Parameters.Clear();
+                            objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                            objComm.Parameters.Add("@attributeValueID", SqlDbType.Int).Value = attributes[i].AttributeValueID;
+
+                            status[i] = objComm.ExecuteNonQuery();
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while saving product attributes", ex);
+                    }
+                }
+            }
+
+            return status;
+        }
+
+        private int[] SaveProductCategories(List<Category> categories, int productID)
+        {
+            int[] status = new int[categories.Count];
+            DeleteProductCategories(productID);
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("INSERT INTO productCategory (productID, categoryID) VALUES (@productID, @categoryID)", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        for (int i = 0; i < categories.Count; i++)
+                        {
+                            objComm.Parameters.Clear();
+                            objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                            objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categories[i].CategoryID;
+
+                            status[i] = objComm.ExecuteNonQuery();
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while saving product categories", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int[] SaveProductImages(List<string> images, int productID)
+        {
+            int[] status = new int[images.Count];
+            DeleteProductImages(productID);
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("INSERT INTO productImageUrl (productID, imageUrl, sortOrder) VALUES (@productID, @imageUrl, @sortOrder)", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        for (int i = 0; i < images.Count; i++)
+                        {
+                            objComm.Parameters.Clear();
+                            objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                            objComm.Parameters.Add("@imageUrl", SqlDbType.NVarChar, 100).Value = (images[i].Contains("/images/")) ? images[i].Substring(8, images[i].Length - 8) : images[i];
+                            objComm.Parameters.Add("@sortOrder", SqlDbType.Int).Value = i + 1;
+
+                            status[i] = objComm.ExecuteNonQuery();
+                        }
+                    }
+                    catch(SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while saving product images", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int saveProductPromotion(Promotion promotion, int productID)
+        {
+            int status = 0;
+            DeleteProductPromotions(productID);
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("INSERT INTO promotionProduct (promotionID, productID, price) VALUES (@promotionID, @productID, @price)", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@promotionID", SqlDbType.Int).Value = promotion.PromotionID;
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                    objComm.Parameters.Add("@price", SqlDbType.Float).Value = promotion.Price;
+
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
+        
+        public int SetApproved(int productID, bool isApproved)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET isApproved=@isApproved WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@isApproved", SqlDbType.Bit).Value = isApproved;
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                        status = objComm.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while changing approved status", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        public int SetActive(int productID, bool isActive)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET isActive=@isActive WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@isActive", SqlDbType.Bit).Value = isActive;
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                        status = objComm.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while changing active status", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        public int SetInStock(int supplierID, bool inStock, int categoryID)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET isInStock=@isInStock WHERE supplierID=@supplierID AND isLocked=0 AND productID IN (SELECT productID FROM productCategory WHERE categoryID=@categoryID)", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@isInStock", SqlDbType.Bit).Value = inStock;
+                    objComm.Parameters.Add("@supplierID", SqlDbType.Int).Value = supplierID;
+                    objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
+
+        public int SetLocked(int productID, bool isLocked)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET isLocked=@isLocked WHERE productID=@productID", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@isLocked", SqlDbType.Bit).Value = isLocked;
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
+
+        public int SetIsInStock(int productID, bool isInStock)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET isInStock=@isInStock WHERE productID=@productID", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@isInStock", SqlDbType.Bit).Value = isInStock;
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
+
+        public int UpdatePriceAndStock(int productID, double price, double webPrice, bool isIsInStock)
+        {
+            int status = 0;
+            using(SqlConnection objConn=new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("UPDATE product SET price=@price, isInStock=@isInStock, webPrice=@webPrice WHERE productID=@productID", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@price", SqlDbType.Float).Value = price;
+                    objComm.Parameters.Add("@isInStock", SqlDbType.Bit).Value = isIsInStock;
+                    objComm.Parameters.Add("@webPrice", SqlDbType.Float).Value = webPrice;
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
+
+        #endregion SaveProduct
+
+        #region DeleteProduct
+
+        public int DeleteProduct(int productID)
+        {
+            int status;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("DELETE FROM product WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                        status = objComm.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while deleting product", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int DeleteProductAttributes(int productID)
+        {
+            int status;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("DELETE FROM productAttributeValue WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                        status = objComm.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while deleting product attributes", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int DeleteProductCategories(int productID)
+        {
+            int status;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("DELETE FROM productCategory WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                        status = objComm.ExecuteNonQuery();
+                    }
+                    catch(SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while deleting product categories", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int DeleteProductImages(int productID)
+        {
+            int status;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("DELETE FROM productImageUrl WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+
+                        status = objComm.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while deleting product images", ex);
+                    }
+                }
+            }
+            return status;
+        }
+
+        private int DeleteProductPromotions(int productID)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("DELETE FROM promotionProduct WHERE productID=@productID", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
+
+        #endregion DeleteProduct
+
+        #region GetProduct
+
+        public Product GetProduct(int productID, string url)
+        {
+            Product product = null;
+
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT productID, code, supplierCode, brand.brandID, product.name, description, price, webPrice, brand.name, isApproved, isActive, insertDate, updateDate, vatID, supplierID, specification, isLocked, isInStock, ean FROM product INNER JOIN brand ON product.brandID=brand.brandID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+
+                        if (productID > 0)
+                        {
+                            objComm.CommandText += " WHERE productID=@productID";
+                            objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                        }
+                        else if (url != string.Empty)
+                        {
+                            objComm.CommandText += " WHERE url=@url";
+                            objComm.Parameters.Add("@url", SqlDbType.NVarChar, 100).Value = url;
+                        }
+
+                        using (SqlDataReader reader = objComm.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                                product = new Product();
+
+                            while (reader.Read())
+                            {
+                                product.ProductID = productID;
+                                product.Code = reader.GetString(1);
+                                product.SupplierCode = reader.GetString(2);
+                                product.Brand = new Brand(reader.GetInt32(3), reader.GetString(8));
+                                product.Name = reader.GetString(4);
+                                product.Description = reader.GetString(5);
+                                product.Price = reader.GetDouble(6);
+                                product.WebPrice = reader.GetDouble(7);
+                                product.IsApproved = reader.GetBoolean(9);
+                                product.IsActive = reader.GetBoolean(10);
+                                product.InsertDate = reader.GetDateTime(11);
+                                product.UpdateDate = reader.GetDateTime(12);
+                                product.VatID = reader.GetInt32(13);
+                                product.SupplierID = reader.GetInt32(14);
+                                //if (!Convert.IsDBNull(reader[15]))
+                                    product.Specification = createProductSpecification(product.ProductID);//reader.GetString(15);
+                                product.IsLocked = reader.GetBoolean(16);
+                                product.IsInStock = reader.GetBoolean(17);
+                                if (!Convert.IsDBNull(reader[18]))
+                                    product.Ean = reader.GetString(18);
+                                product.Categories = GetProductCategories(product.ProductID);
+                                product.Attributes = GetProductAttributes(product.ProductID);
+                                product.Images = GetProductImages(product.ProductID);
+                                product.Promotion = getPromotions(product.ProductID);
+                                if (product.Description == string.Empty)
+                                    product.Description = GetProductAttributeValues(product.ProductID, true);
+
+                                //if (product.Specification == string.Empty)
+                                    //product.Specification = createProductSpecification(product.ProductID);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while loading product", ex);
+                    }
+                }
+            }
+            return product;
+        }
+
+        private List<Category> GetProductCategories(int productID)
+        {
+            List<Category> categories = null;
+
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT category.categoryID, name, parentCategoryID, url, imageUrl, sortOrder FROM productCategory INNER JOIN category ON productCategory.categoryID=category.categoryID WHERE productID=@productID", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                        using (SqlDataReader reader = objComm.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                                categories = new List<Category>();
+                            while (reader.Read())
+                            {
+                                categories.Add(new Category(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), 0, 0, string.Empty));
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while loading product categories", ex);
+                    }
+                }
+            }
+            return categories;
+        }
+
+        private List<AttributeValue> GetProductAttributes(int productID)
+        {
+            List<AttributeValue> attributes = null;
+
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT productAttributeValue.attributeValueID, value, attribute.attributeID FROM productAttributeValue INNER JOIN attributeValue ON productAttributeValue.attributeValueID=attributeValue.attributeValueID INNER JOIN attribute ON attributeValue.attributeID=attribute.attributeID WHERE productID=@productID ORDER BY name", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                        using (SqlDataReader reader = objComm.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                                attributes = new List<AttributeValue>();
+                            while (reader.Read())
+                            {
+                                attributes.Add(new AttributeValue(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), 0, string.Empty, 0));
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while loading product attributes", ex);
+                    }
+                }
+            }
+            return attributes;
+        }
+
+        public List<string> GetProductImages(int productID)
+        {
+            List<string> images = null;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT imageUrl FROM productImageUrl WHERE productID=@productID ORDER BY sortOrder", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                        using (SqlDataReader reader = objComm.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                                images = new List<string>();
+                            while (reader.Read())
+                            {
+                                if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/images/" + reader.GetString(0))))
+                                    images.Add("/images/" + reader.GetString(0));
+                                else
+                                    images.Add("/images/no-image.jpg");
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while loading product images", ex);
+                    }
+                }
+            }
+            return images;
+        }
+
+        public int GetProductIDBySupplierCode(string supplierCode)
+        {
+            int productID = -1;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT productID FROM product WHERE supplierCode=@supplierCode", objConn))
+                {
+                    try
+                    {
+                        objConn.Open();
+                        objComm.Parameters.Add("@supplierCode", SqlDbType.NVarChar, 50).Value = supplierCode;
+                        using (SqlDataReader reader = objComm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                                productID = reader.GetInt32(0);
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        throw new DLException("Error while loading product id", ex);
+                    }
+                }
+            }
+            return productID;
+        }
+
+        private Promotion getPromotions(int productID)
+        {
+            Promotion promotion = null;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT promotion.promotionID, price, imageUrl FROM promotionProduct INNER JOIN promotion ON promotionProduct.promotionID=promotion.promotionID WHERE productID=@productID AND promotion.dateFrom<=GETDATE() AND promotion.dateTo>=GETDATE()", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            promotion = new Promotion();
+                            promotion.PromotionID = reader.GetInt32(0);
+                            promotion.Price = reader.GetDouble(1);
+                            promotion.ImageUrl = reader.GetString(2);
+                        }
+                    }
+                }
+            }
+            return promotion;
+        }
+
+        public bool IsLocked(int productID)
+        {
+            bool isLocked = false;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT isLocked FROM product WHERE productID=@productID", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            isLocked = reader.GetBoolean(0);
+                    }
+                }
+            }
+            return isLocked;
+        }
+
+        private string createProductSpecification(int productID)
+        {
+            string specification = string.Empty;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT attribute.name, attributeValue.value FROM attribute INNER JOIN attributeValue ON attribute.attributeID=attributeValue.attributeID INNER JOIN productAttributeValue ON attributeValue.attributeValueID=productAttributeValue.attributeValueID INNER JOIN categoryAttribute ON attribute.attributeID=categoryAttribute.attributeID WHERE productAttributeValue.productID=@productID AND attributeValue.value<>'NP' ORDER BY position, attribute.name", objConn))
+                {
+                    objConn.Open();
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                    specification += "<table class='table table-striped'><tbody>";
+                    string attributeGroup = string.Empty;
+                    int i = 0;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (attributeGroup != reader.GetString(0).Substring(0, reader.GetString(0).IndexOf("-")))
+                            {
+                                specification += "<tr class='attributeGroup'><td colspan='2'>" + reader.GetString(0).Substring(0, reader.GetString(0).IndexOf("-")) + "</td></tr>";
+                                attributeGroup = reader.GetString(0).Substring(0, reader.GetString(0).IndexOf("-"));
+                            }
+                            //else
+                            //{
+                                specification += (i++ % 2 == 0) ? "<tr class='gridAltRow'>" : "<tr class='gridRow'>";
+                                specification += "<td class='attributeName'>" + reader.GetString(0).Substring(reader.GetString(0).IndexOf("-")+1) + "</td><td>" + reader.GetString(1) + "</td></tr>";
+                            //}
+                        }
+                        specification += "</table>  ";
+                    }
+                }
+            }
+            return specification;
+        }
+
+        public string GetProductAttributeValues(int productID, bool? isDescription)
+        {
+            string values = string.Empty;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("getProductAttributeValues", objConn))
+                {
+                    objConn.Open();
+                    objComm.CommandType = CommandType.StoredProcedure;
+                    objComm.Parameters.Add("@productID", SqlDbType.Int).Value = productID;
+                    objComm.Parameters.Add("@isDescription", SqlDbType.Bit).Value = isDescription;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            values += reader.GetString(0) + ", ";
+                    }
+                }
+            }
+            return (values != string.Empty) ? values.Substring(0, values.Length - 2) : values;
+        }
+
+        public double[] GetMinMaxPriceForCategory(int categoryID)
+        {
+            double[] prices = new double[2];
+
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("product_getMinMaxPriceForCategory", objConn))
+                {
+                    objConn.Open();
+                    objComm.CommandType = CommandType.StoredProcedure;
+                    objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            prices[0] = !Convert.IsDBNull(reader[0]) ? reader.GetDouble(0) : 0;
+                            prices[1] = !Convert.IsDBNull(reader[1]) ? reader.GetDouble(1) : 0;
+                        }
+                    }
+                }
+            }
+            return prices;
+        }
+
+        #endregion GetProduct
+
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /*public Product GetProduct(int productID)
+        {
+            return GetProduct(pro
+        }*/
+
+        /*public List<Product> GetProduct(string code)
+        {
+            return GetProducts(-1, code, string.Empty, null, -1);
+        }*/
+
+        /*public List<Product> GetProducts(string supplierCode)
+        {
+            return GetProducts(-1, string.Empty, supplierCode, null);
+        }*/
+    }
+}

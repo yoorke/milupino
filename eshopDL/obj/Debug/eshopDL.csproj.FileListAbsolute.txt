@@ -1,0 +1,59 @@
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopDL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\obj\Debug\ResolveAssemblyReference.cache
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\obj\Debug\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\obj\Debug\eshopDL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopBE.dll
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopBE.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopUtilities.dll
+D:\za kopiranje\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopUtilities.pdb
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopDL.dll
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopDL.pdb
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopBE.dll
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopUtilities.dll
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopBE.pdb
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopUtilities.pdb
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\obj\Debug\ResolveAssemblyReference.cache
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\obj\Debug\eshopDL.dll
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\obj\Debug\eshopDL.pdb
+e:\!dealSoft\web sajtovi\eshop\eshop\eshopDL\bin\Debug\eshopDL.dll.config
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopDL.dll.config
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopDL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopBE.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopUtilities.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopBE.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\bin\Debug\eshopUtilities.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\obj\Debug\ResolveAssemblyReference.cache
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\obj\Debug\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop\eshop\eshopDL\obj\Debug\eshopDL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopDL.dll.config
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopDL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopBE.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopUtilities.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopBE.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\bin\Debug\eshopUtilities.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\obj\Debug\ResolveAssemblyReference.cache
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\obj\Debug\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopDL\obj\Debug\eshopDL.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\obj\Debug\ResolveAssemblyReference.cache
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\obj\Debug\eshopDL.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopDL.dll.config
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopDL.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopDL.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopBE.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopUtilities.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopBE.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\bin\Debug\eshopUtilities.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopDL\obj\Debug\eshopDL.pdb
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopDL.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopDL.dll.config
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopBE.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopUtilities.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopBE.pdb
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopUtilities.pdb
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\obj\Debug\eshopDL.csprojResolveAssemblyReference.cache
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\obj\Debug\eshopDL.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\obj\Debug\eshopDL.pdb
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopDL\bin\Debug\eshopDL.pdb

@@ -1,0 +1,71 @@
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopv2.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopv2.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\obj\Debug\ResolveAssemblyReference.cache
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\obj\Debug\eshopv2.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\obj\Debug\eshopv2.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopBE.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopBL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopDL.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopUtilities.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopDL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopBL.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopBE.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\eshopUtilities.pdb
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\AjaxControlToolkit.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\AjaxMin.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\CKEditor.NET.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\Intelligencia.UrlRewriter.dll
+D:\za kopiranje\!dealSoft\web sajtovi\novo\eshop v2\eshopv2\eshopv2\bin\CKEditor.NET.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopv2.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopv2.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\AjaxControlToolkit.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\AjaxMin.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\CKEditor.NET.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopBE.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopBL.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopUtilities.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\Intelligencia.UrlRewriter.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopDL.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopBL.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopDL.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopBE.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\eshopUtilities.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\CKEditor.NET.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\obj\Debug\ResolveAssemblyReference.cache
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\obj\Debug\eshopv2.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\obj\Debug\eshopv2.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\Newtonsoft.Json.dll
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\Newtonsoft.Json.pdb
+c:\!dealStudio\Web sajtovi\eshop v2\eshopv2\eshopv2\bin\Newtonsoft.Json.xml
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\obj\Debug\eshopv2.csprojResolveAssemblyReference.cache
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopv2.dll.config
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopv2.dll
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopv2.pdb
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopBE.dll
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopBL.dll
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopUtilities.dll
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopDL.dll
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopBE.pdb
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopBL.pdb
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopUtilities.pdb
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\eshopDL.pdb
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\obj\Debug\eshopv2.dll
+c:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\obj\Debug\eshopv2.pdb
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\NReco.PdfGenerator.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportSource.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.Shared.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.Web.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopv2\bin\stdole.dll

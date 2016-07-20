@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="administrator.master.cs" Inherits="eshopv2.administrator.administrator" EnableViewState="true" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Admin panel</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="leftMenu">
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/categories.aspx">Kategorije</a></h2>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/attributes.aspx">Atributi</a></h2>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/products.aspx">Proizvodi</a></h2>
+            <ul>
+                <li><a href="/administrator/getProducts.aspx">Učitaj proizvode</a></li>
+            </ul>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/promotions.aspx">Promocije</a></h2>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/users.aspx">Korisnici</a></h2>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/orders.aspx">Narudžbine</a></h2>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/sliders.aspx">Sliders</a></h2>
+        </div>
+        <div class="leftMenuItem">
+            <h2><a href="/administrator/banner.aspx">Baneri</a></h2>
+        </div>
+        
+        
+        <div class="leftMenuItem">
+            <h2><asp:LinkButton ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"></asp:LinkButton></h2>
+        </div>
+        
+        <div class="leftMenuItem">
+            Korisnik: <asp:Label ID="lblUsername" runat="server"></asp:Label>
+        </div>
+
+    </div>
+
+    <div id="content">
+        
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

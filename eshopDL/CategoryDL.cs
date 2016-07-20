@@ -46,7 +46,7 @@ namespace eshopDL
                                 else
                                     newRow[2] = 0;
                                 newRow[3] = "/proizvodi/" + reader.GetString(3);
-                                newRow[4] = "/images/" + reader.GetString(4);
+                                newRow[4] = reader.GetString(4) != string.Empty ? "/images/" + reader.GetString(4) : string.Empty;
                                 newRow[5] = (Convert.IsDBNull(reader[5]) == false) ? reader.GetInt32(5) : 0;
                                 newRow[6] = reader.GetInt32(6);
 

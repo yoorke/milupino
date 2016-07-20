@@ -6,7 +6,7 @@
     <div class="cd-dropdown-wrapper">
         <a class="cd-dropdown-trigger" href="#">Proizvodi</a>
         <nav class="cd-dropdown">
-            <h2>Title</h2>
+            <h2>Proizvodi</h2>
             <a href="#" class="cd-close">Close</a>
             <ul class="cd-dropdown-content">
 
@@ -22,10 +22,11 @@
 
                                         
                                     <ul class="cd-secondary-dropdown is-hidden">
+                                        <li class="go-back"><a href="#0">Nazad</a></li>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <li id="secondLi" runat="server">
-                                        <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# ResolveUrl("~" + Eval("imageUrl")) %>' CssClass="menu-img" />
+                                        <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# ResolveUrl("~" + Eval("imageUrl")) %>' CssClass="menu-img" Visible='<%#Eval("imageUrl").ToString() != string.Empty %>' />
                                         <asp:HyperLink ID="lnkSubMenu" runat="server" NavigateUrl='<%# ResolveUrl("~" + Eval("url")) %>' Text='<%#Eval("name") %>'>'></asp:HyperLink>
                                         
                                         <asp:Repeater ID="rptSubMenu3" runat="server" DataSource='<%#Eval("SubCategory") %>'>
@@ -42,7 +43,7 @@
 
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <li class="categoryBanner">
+                                    <li class="categoryBanner visible-lg visible-md">
                                         
                                         <%--<img src="/images/no-image.jpg" style="position:absolute;right:0;bottom:0" />--%>
                                         <%--<banner:Banner ID="categoryBanner" runat="server" Position="FP2" />--%>
@@ -53,7 +54,7 @@
                                             
                                     </li>
                                     <li class="bottom">
-                                        <div class="bottom">
+                                        <div class="bottomExtraMenu">
                                             <asp:Repeater ID="rptExtraMenus" runat="server" DataSource='<%#((eshopBE.Category)((RepeaterItem)(Container.NamingContainer.NamingContainer)).DataItem).CategoryExtraMenus %>'>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblExtraMenuName" runat="server" Text='<%#Eval("name") + ":" %>' CssClass="categoryExtraMenuName"></asp:Label>
@@ -62,12 +63,12 @@
                                                             <asp:HyperLink ID="lnkBrand" runat="server" NavigateUrl='<%# ((eshopBE.Category)((RepeaterItem)((Repeater)((RepeaterItem)((Repeater)((RepeaterItem)((Repeater)Container.NamingContainer).NamingContainer).NamingContainer).NamingContainer).NamingContainer).NamingContainer).DataItem).Url + "?brands=" + Eval("brandID") %>' CssClass="padding-right-0">
                                                                 <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("name")%>'></asp:Label>
                                                             </asp:HyperLink>
-                                                            <span> | </span>
+                                                            <span class="extraMenuSeparator"> | </span>
                                                         </ItemTemplate>
                                                     </asp:Repeater>
                                                 </ItemTemplate>
                                             </asp:Repeater>
-                                            <%#((eshopBE.Category)((RepeaterItem)(Container.NamingContainer.NamingContainer)).DataItem).CategoryExtraMenus.Count.ToString() %>
+                                            <%--<%#((eshopBE.Category)((RepeaterItem)(Container.NamingContainer.NamingContainer)).DataItem).CategoryExtraMenus.Count.ToString() %>--%>
                                         </div>
                                     </li>
                                     </ul>
