@@ -636,7 +636,7 @@ header {
     overflow: hidden;
     width: 810px;
     padding-bottom: 0px;
-    min-height:443px;
+    min-height:400px;
     list-style-type:none;
   }
   .cd-dropdown-content .cd-secondary-dropdown::before {
@@ -670,7 +670,7 @@ header {
     transform: translateX(0);
   }
   .cd-dropdown-content .cd-secondary-dropdown > li {
-    margin: 10px 0;
+    margin: 5px 0;
     border:0;
     border-right-width: 0px;
     border-color: #ebebeb;
