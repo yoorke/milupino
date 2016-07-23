@@ -1,8 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MainMenuVertical.ascx.cs" Inherits="eshopv2.user_controls.MainMenuVertical" %>
 <%@ Register Src="~/user_controls/Banner.ascx" TagName="Banner" TagPrefix="banner" %>
 <%@ Register Src="~/user_controls/CategoryBanner.ascx" TagName="CategoryBanner" TagPrefix="categoryBanner" %>
-<div id="product-menu" class="">
-    <div class="container padding-left-0">
+
     <div class="cd-dropdown-wrapper">
         <a class="cd-dropdown-trigger" href="#">Proizvodi</a>
         <nav class="cd-dropdown">
@@ -108,5 +107,4 @@
             </ul>
         </nav>
     </div>
-        </div>
-</div>
+        

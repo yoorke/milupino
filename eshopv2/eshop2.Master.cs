@@ -66,5 +66,17 @@ namespace eshopv2
             if(txtSearch.Text != string.Empty)
                 Response.Redirect("~/pretraga?a=" + txtSearch.Text);
         }
+
+        protected void btnCompare_Click(object sender, EventArgs e)
+        {
+            System.Collections.Generic.List<int> productCompare = (System.Collections.Generic.List<int>)System.Web.HttpContext.Current.Session["compare"];
+            if(productCompare != null) { 
+            string productList = string.Empty;
+            foreach (int productID in productCompare)
+                productList += productID.ToString() + "-";
+            productList = productList.Substring(0, productList.Length - 1);
+            Response.Redirect("/compare.aspx?productList=" + productList);
+            }
+        }
     }
 }

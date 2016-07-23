@@ -168,7 +168,22 @@
                         </div><!--col-->
                         
                         <!--HEADER MENU-->
-                        <div class="col-xs-7">
+                        
+                    </div><!--row-->
+                </div>
+            </div><!--row-->
+         <!--</div><!--container-->
+    </div><!--header-bottom-->--%>
+    
+    <!--PRODUCT MENU-->
+    <%--<mainMenu:MainMenu ID="mainMenu1" runat="server" />--%>
+    <div id="mainMenu" class="">
+        <div class="container padding-left-0">
+            <div class="row">
+                <div class="col-xs-5" id="product-menu">
+                    <mainMenuVertical:MainMenuVertical ID="mainMenu2" runat="server" />
+                </div>
+                <div class="col-xs-7" id="header-bottom">
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
                                     <div class="navbar-header">
@@ -184,7 +199,8 @@
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="active"><a href="/">Početna</a></li>
                                             <li><a href='<%=Page.ResolveUrl("~/lista-zelja") %>'>Lista želja</a></li>
-                                            <li><a href="#">Uporedi</a></li>
+                                            <%--<li><a href="#">Uporedi</a></li>--%>
+                                            <li><asp:LinkButton ID="btnCompare" runat="server" OnClick="btnCompare_Click" Text="Uporedi"></asp:LinkButton></li>
                                             <li><a href="/moj-nalog">Moj nalog</a></li> 
                                             <li><a href="/korpa">Korpa</a></li>
                                             <li><a href="/porucivanje">Poručivanje</a></li>
@@ -194,15 +210,9 @@
                                 </div>
                             </nav>
                         </div><!--col-->
-                    </div><!--row-->
-                </div>
-            </div><!--row-->
-         <!--</div><!--container-->--%>
-    </div><!--header-bottom-->
-    
-    <!--PRODUCT MENU-->
-    <%--<mainMenu:MainMenu ID="mainMenu1" runat="server" />--%>
-    <mainMenuVertical:MainMenuVertical ID="mainMenu2" runat="server" />
+            </div>
+        </div>
+    </div>
     <!--<div id="product-menu">
         <div class="container">
             <div class="row">
