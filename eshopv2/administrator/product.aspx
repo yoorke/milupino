@@ -412,6 +412,9 @@
         return false;
     }
 </script>
+
+</asp:Content>
+<asp:Content ID="content3" runat="server" ContentPlaceHolderID="ContentPlaceHolderFooter">
 <script type="text/javascript">
     $(function() {
         var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "product";

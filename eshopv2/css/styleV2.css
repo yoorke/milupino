@@ -304,6 +304,7 @@ body
 	/*text-transform:uppercase;*/
 	font-size:0.9em;
 	/*font-weight:bold;*/
+    z-index:11;
 	
 }
 

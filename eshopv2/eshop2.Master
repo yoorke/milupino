@@ -55,11 +55,16 @@
     <div id="top">
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
-                    <a href="/besplatna-dostava"><span class="fa fa-fw fa-truck"></span> Besplatna dostava</a>
+                <div class="col-md-6">
+                    <a href="/besplatna-dostava" class="margin-right-05"><span class="fa fa-fw fa-truck"></span> Besplatna dostava</a>
+                    <a href="/povracaj-robe" class="margin-right-05"><span class="fa fa-fw fa-history"></span>Povraćaj robe</a>
+                    <a href="/rokovi-isporuke"><span class="fa fa-fw fa-clock-o"></span> Rokovi isporuke</a>
                 </div>
-                <div class="col-md-2">
-                    <a href="/povracaj-robe"><span class="fa fa-fw fa-history"></span>Povraćaj robe</a>
+                <div class="col-md-1">
+                    
+                </div>
+                <div class="col-md-1">
+                    
                 </div>
                 
                 <div class="col-md-1 pull-right text-right">
@@ -373,10 +378,11 @@
             </div>
         </div>
     </div>
-
+    
     
     
     </form>
+    <div id="mainMenuVerticalBackground" class="mainMenuVerticalBackground" style="display:none"></div>
     
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
     <script src="<%=ResolveUrl("~/js/jquery-1.11.3.min.js") %>"></script>
@@ -453,7 +459,14 @@
             })
         })
     </script>
-    
+    <script>
+        $('.cd-dropdown-trigger').click(function () {
+            if ($('#mainMenuVerticalBackground')[0].style["display"] == "none")
+                $('#mainMenuVerticalBackground').show();
+            else
+                $('#mainMenuVerticalBackground').hide();
+        })
+    </script>
     
     <asp:ContentPlaceHolder ID="ContentPlaceHolderFooter" runat="server"></asp:ContentPlaceHolder>
 </body>

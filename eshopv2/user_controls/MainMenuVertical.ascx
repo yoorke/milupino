@@ -14,7 +14,7 @@
                         <li id="li" runat="server">
                             
                             <asp:Hyperlink ID="lnkMenuItem" runat="server" NavigateUrl='<%#Eval("url") %>' Text='<%#Eval("name") %>'></asp:Hyperlink>
-
+                            <div class="separator" runat="server" visible="false"></div>
                             <asp:Repeater ID="rptSubMenu" runat="server" DataSource='<%#Eval("SubCategory") %>' OnItemDataBound="rptSubMenu_ItemDataBound">
                                 <HeaderTemplate>
                                     
