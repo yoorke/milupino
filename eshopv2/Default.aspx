@@ -20,16 +20,16 @@
         <div class="col-xs-12">
             <slider:Slider ID="slider1" runat="server" />
         </div><!--slider-->
-        <div class="col-xs-2 left-column visible-lg visible-md">
+        <%--<div class="col-xs-2 left-column visible-lg visible-md">
             <banner:Banner ID="banner1" runat="server" Position="FP1" />
             <banner:Banner ID="banner2" runat="server" Position="FP2" />
             
             <div class="fb-page" data-href="https://www.facebook.com/milupino.zr?fref=ts" data-width="180" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/pinservis?fref=ts"><a href="https://www.facebook.com/pinservis?fref=ts">Pin Servis</a></blockquote></div></div>
             
-        </div><!--col-banner-->
+        </div><!--col-banner-->--%>
         
         <!--MAIN CONTENT-->
-        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main-content first-page">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-content first-page">
             
             <!--SLIDER-->
             <%--<slider:Slider ID="slider1" runat="server" />--%>
@@ -69,46 +69,52 @@
                     </div><!-- #camera_wrap_1 
                 </div><!--col
             </div><!--row-slider-->
-            
+
+            <!--Banners-->
+            <div class="row">
+                <div class="col-lg-3 bannerFP">Banner</div>
+                <div class="col-lg-5 bannerFP">Banner</div>
+                <div class="col-lg-4 bannerFP">Banner</div>
+            </div>
             <!--PRODUCT SLIDER-->
             <div class="row product_slider">
-            <div class="col-lg-12">
-            <asp:Repeater ID="rptPromotions" runat="server" OnItemDataBound="rptPromotions_ItemDataBound">
-                <HeaderTemplate>
-                    <!--<div class="row">
-                        <div class="col-lg-12">-->
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <asp:HiddenField ID="lblPromotionID" runat="server" Value='<%#Eval("promotionID") %>' />
-                    <!--<h2><asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label></h2>-->
-                    <ps:ProductSlider ID="productSlider1" runat="server" />
-                </ItemTemplate>
-                <FooterTemplate>
+                <div class="col-lg-12">
+                <asp:Repeater ID="rptPromotions" runat="server" OnItemDataBound="rptPromotions_ItemDataBound">
+                    <HeaderTemplate>
+                        <!--<div class="row">
+                            <div class="col-lg-12">-->
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:HiddenField ID="lblPromotionID" runat="server" Value='<%#Eval("promotionID") %>' />
+                        <!--<h2><asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label></h2>-->
+                        <ps:ProductSlider ID="productSlider1" runat="server" />
+                    </ItemTemplate>
+                    <FooterTemplate>
                         <!--</div><!---col
-                    </div>-->
-                </FooterTemplate>
-            </asp:Repeater>
+                        </div>-->
+                    </FooterTemplate>
+                </asp:Repeater>
             
-            <asp:Repeater ID="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
-                <HeaderTemplate>
-                    <!--<div class="row">
-                        <div class="col-lg-12">-->
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <asp:HiddenField ID="lblCategoryID" runat="server" Value='<%#Eval("categoryID") %>' />
-                    <asp:HiddenField ID="lblNumberOfProducts" runat="server" Value='<%#Eval("numberOfProducts") %>' />
-                    <asp:HiddenField ID="lblFirstPageOrderBy" runat="server" Value='<%#Eval("firstPageOrderBy") %>' />
+                <asp:Repeater ID="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
+                    <HeaderTemplate>
+                        <!--<div class="row">
+                            <div class="col-lg-12">-->
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:HiddenField ID="lblCategoryID" runat="server" Value='<%#Eval("categoryID") %>' />
+                        <asp:HiddenField ID="lblNumberOfProducts" runat="server" Value='<%#Eval("numberOfProducts") %>' />
+                        <asp:HiddenField ID="lblFirstPageOrderBy" runat="server" Value='<%#Eval("firstPageOrderBy") %>' />
                     
-                    <ps:ProductSlider ID="productSlider2" runat="server" />
-                </ItemTemplate>
-                <FooterTemplate>
+                        <ps:ProductSlider ID="productSlider2" runat="server" />
+                    </ItemTemplate>
+                    <FooterTemplate>
                         <!--</div>
-                    </div>-->
-                </FooterTemplate>
-            </asp:Repeater>
-            </div><!--col-->
+                        </div>-->
+                    </FooterTemplate>
+                </asp:Repeater>
+                </div><!--col-->
             </div><!--product-slider-->
-                    
+           
                 
         </div><!--col-main-->
     <!--</div>--><!--container-->

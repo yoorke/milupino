@@ -133,10 +133,10 @@
                 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-4 kontakt">
                     <div class="row margin-top-05 text-right">
                         <div class="col-xs-12">
-                            <p class="phoneLabel">Korisnički centar:</p>
+                            <p class="phoneLabel">Telefon:</p>
                             <p class="phone">060 515 4110</p>
                             <p>milupino@gmail.com</p>
-                            <p class="facebook"><a href="http://www.facebook.com/milupino.zr" target="_blank">Milupino@<span class="fa fa-fw fa-facebook"></span>acebook</a></p>
+                            <%--<p class="facebook"><a href="http://www.facebook.com/milupino.zr" target="_blank">Milupino@<span class="fa fa-fw fa-facebook"></span>acebook</a></p>--%>
                             <!--<asp:LoginStatus ID="loginStatus1" runat="server" LoginText="Prijavi se" LogoutText="Odjavi se" />-->
                             
                                     <!--<asp:LinkButton ID="btnCreateAccount" runat="server"></asp:LinkButton>-->
@@ -331,12 +331,12 @@
                 
                 <div class="col-lg-2">
                     <h4>Pratite nas</h4>
-                    <a href="http://www.facebook.com/milupino.zr" target="_blank"><img src="<%= ResolveUrl("~/images/facebook.jpg")  %>" /></a>
-                    <img src="<%= ResolveUrl("~/images/twitter.jpg") %>" />
+                    <a href="http://www.facebook.com/milupino.zr" target="_blank"><img src="<%= ResolveUrl("~/images/Facebook_New_Logo_(2015).svg.png")  %>" class="img-responsive" /></a>
+                    <%--<img src="<%= ResolveUrl("~/images/twitter.jpg") %>" />
                     <img src="<%= ResolveUrl("~/images/google.jpg")  %>" />
                     <img src="<%= ResolveUrl("~/images/youtube.jpg")  %>" />
                     <img src="<%= ResolveUrl("~/images/blog.jpg")  %>" />
-                    <img src="<%= ResolveUrl("~/images/rss.jpg")  %>"/>
+                    <img src="<%= ResolveUrl("~/images/rss.jpg")  %>"/>--%>
                 </div><!--col-->
             </div><!--row-->
             <div class="row footer-center">

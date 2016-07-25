@@ -39,7 +39,7 @@
                     <div class="col-sm-6 col-xs-12">
                         <div role="form" class="form-horizontal">
                             <div class="form-group">
-                                <label for="cmbPageSize" class="col-xs-8">Prikaži po stranici:</label>
+                                <label for="cmbPageSize" class="col-xs-8 control-label">Prikaži po stranici:</label>
                                 <div class="col-xs-4">
                                     <asp:DropDownList ID="cmbPageSize" runat="server" OnSelectedIndexChanged="cmbPageSize_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                                 </div>
@@ -49,7 +49,7 @@
                     <div class="col-sm-6 col-xs-12">
                         <div role="form" class="form-horizontal">
                             <div class="form-group">
-                                <label for="cmbSort" class="col-xs-5">Sortiraj po:</label>
+                                <label for="cmbSort" class="col-xs-5 control-label">Sortiraj po:</label>
                                 <div class="col-xs-7">
                                     <asp:DropDownList ID="cmbSort" runat="server" OnSelectedIndexChanged="cmbSort_SelectedIndexChanged" CssClass="pull-right form-control"></asp:DropDownList>
                                 </div>

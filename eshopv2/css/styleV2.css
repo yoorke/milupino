@@ -144,7 +144,8 @@ body
 {
 	height:auto;
 	/*background:url('../images/header_bg.jpg') repeat-x;*/
-	margin-top:5px;
+	margin-top:10px;
+    margin-bottom:10px;
 }
 
 #header .header-icon
@@ -752,7 +753,11 @@ body
 }
 
 .product_fp:hover {
-    box-shadow:0px 0px 10px 0px #dddddd;
+    box-shadow:0px 0px 20px 0px #eeeeee;
+}
+
+.product_fp:hover img{
+
 }
 
 .product_fp .wrapper
@@ -781,15 +786,16 @@ body
 .product_fp .wrapper h4
 {
 	position:absolute;
-	top:140px;
-	left:0px;
+	top:180px;
+	right:0px;
 	font-size:0.9em;
 	padding:0px 2px;
 	text-align:center;
 	margin:5px 0px;
+    font-weight:bold;
 }
 
-.product_fp .wrapper h4 a
+.product_fp .wrapper h4 a, .product_fp .wrapper h3 a
 {
 	color:#444444;
 }
@@ -799,7 +805,7 @@ body
 	position:absolute;
 	top:105px;
 	font-weight:bold;
-	font-size:1.1em;
+	font-size:1em;
 	width:100%;
 	text-align:center;
 }
@@ -813,7 +819,7 @@ body
 .product_fp .wrapper .price_div
 {
 	position:absolute;
-	top:180px;
+	top:200px;
 	width:100%;
 	text-align:right;
 	padding:0px 2px;
@@ -822,7 +828,7 @@ body
 .product_fp .wrapper .webprice_div
 {
 	position:absolute;
-	top:200px;
+	top:215px;
 	width:100%;
 	text-align:right;
 	padding:0px 2px;
@@ -831,7 +837,7 @@ body
 .product_fp .wrapper .saving_div
 {
 	position:absolute;
-	top:228px;
+	top:240px;
 	width:100%;
 	text-align:right;
 	padding:0px 2px;
@@ -882,7 +888,7 @@ body
 .product_fp .wrapper .buttons
 {
 	position:absolute;
-	top:250px;
+	top:260px;
 	background-color:#eeeeee;
 	width:100%;
 	font-size:1.3em;
@@ -970,6 +976,12 @@ body
     color:#444444;
 }
 
+.product_fp .wrapper .description{
+    position:absolute;
+    top:160px;
+    font-size:0.8em;
+}
+
 .carousel-inner
 {
 	padding:0px 10px;
@@ -1027,7 +1039,12 @@ body
 	width:auto;
 	display:inline-block;
 	text-align:center;
-	border:1px solid #aaaaaa;
+	border:0px solid #aaaaaa;
+}
+
+.paging .activePage{
+    background-color:#b5e6f1;
+    color:#ffffff;
 }
 
 .sort
@@ -1038,10 +1055,11 @@ body
 
 .sort select
 {
-	font-size:1.2em;
+	font-size:1.1em;
 	border:none;
 	padding:2px;
-	border:1px solid #aaaaaa;
+	border:1px solid #cccccc;
+    border-radius:0;
 }
 
 .sort label
@@ -1163,7 +1181,7 @@ body
 	/*height:20px;*/
 }
 
-#cartFP a, a:hover
+#cartFP a, #cartFP a:hover
 {
 	color:#ffffff;
 	text-decoration:none;
@@ -1502,4 +1520,10 @@ table.orderItems {
     border-top:1px solid #eeeeee;
     margin:1em 0;
     padding:1em 0;
+}
+
+.bannerFP{
+    border:1px solid #eeeeee;
+    text-align:center;
+    height:220px;
 }

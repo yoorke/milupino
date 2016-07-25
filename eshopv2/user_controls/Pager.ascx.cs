@@ -94,6 +94,7 @@ namespace eshopv2.user_controls
                 {
                     lnkPage.Enabled = false;
                     lnkPage.Font.Bold = true;
+                    lnkPage.Attributes["class"] = "activePage";
                 }
             }
         }

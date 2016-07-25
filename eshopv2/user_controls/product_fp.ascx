@@ -8,8 +8,9 @@
                 <asp:Image ID="imgPhoto" runat="server" ImageUrl="~/images/no-image.jpg" CssClass="img-responsive" />
             </asp:HyperLink>
         </div><!--photo-->
-        <h3><asp:Label ID="lblBrand" runat="server"></asp:Label></h3>
-        <h4><asp:HyperLink ID="lblName" runat="server">ewqew</asp:HyperLink></h4>
+        <h4><asp:Label ID="lblBrand" runat="server"></asp:Label></h4>
+        <h3><asp:HyperLink ID="lblName" runat="server">ewqew</asp:HyperLink></h3>
+        <p class="description"><asp:Label ID="lblDescription" runat="server"></asp:Label></p>
         <asp:Image ID="imgPromotion" runat="server" CssClass="img_promotion" Visible="false" />
         <div class="price_div" runat="server" visible="false" id="price_div">
             <span class="price_label">M.P.</span>
