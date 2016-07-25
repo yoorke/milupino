@@ -32,3 +32,10 @@ C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopUtilities\bin\Debug\eshopBE.pdb
 C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopUtilities\obj\Debug\eshopUtilities.csprojResolveAssemblyReference.cache
 C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopUtilities\obj\Debug\eshopUtilities.dll
 C:\Korisnici\Web sajtovi\milupino\eshopv2\eshopUtilities\obj\Debug\eshopUtilities.pdb
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\bin\Debug\eshopUtilities.dll
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\bin\Debug\eshopUtilities.pdb
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\bin\Debug\eshopBE.dll
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\bin\Debug\eshopBE.pdb
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\obj\Debug\eshopUtilities.csprojResolveAssemblyReference.cache
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\obj\Debug\eshopUtilities.dll
+C:\!dealStudio\Web sajtovi\milupino\milupino\eshopUtilities\obj\Debug\eshopUtilities.pdb
