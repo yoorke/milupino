@@ -20,6 +20,8 @@ namespace eshopv2
         {
             
             loadFooter();
+            loadMenuActions();
+
             Page.Header.DataBind();
 
             if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -49,8 +51,12 @@ namespace eshopv2
             CartBL cartBL = new CartBL();
             lblProductCount.Text = cartBL.GetProductsCount(Session["cartID"].ToString()).ToString();
             lblCartPrice.Text = string.Format("{0:N2}", cartBL.GetTotal(Session["cartID"].ToString()));
+
+            lblWishListCount.Text = (Page.User.Identity.IsAuthenticated) ? new WishListBL().GetWishListProducts(int.Parse(Membership.GetUser().ProviderUserKey.ToString())).Count().ToString() : "0";
+
             base.Render(writer);
 
+            
             
         }
 
@@ -77,6 +83,12 @@ namespace eshopv2
             productList = productList.Substring(0, productList.Length - 1);
             Response.Redirect("/compare.aspx?productList=" + productList);
             }
+        }
+
+        private void loadMenuActions()
+        {
+            rptMenuActions.DataSource = new PromotionBL().GetPromotions(false, true);
+            rptMenuActions.DataBind();
         }
     }
 }

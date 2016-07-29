@@ -13,7 +13,7 @@ namespace eshopDL
 {
     public class CategoryDL
     {
-        public DataTable GetCategories()
+        public DataTable GetCategories(string sort = "categoryID, parentCategoryID", bool showNotActive = true)
         {
             DataTable categoriesDT = new DataTable();
             categoriesDT.Columns.Add("categoryID", typeof(int));
@@ -26,12 +26,16 @@ namespace eshopDL
 
             //loading flattened datatable category without nested categories
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
-                using (SqlCommand objComm = new SqlCommand("SELECT categoryID, name, parentCategoryID, url, imageUrl, sortOrder, categoryBannerID FROM category WHERE active = 1 ORDER BY categoryID, parentCategoryID"))
+                using (SqlCommand objComm = new SqlCommand("SELECT categoryID, name, parentCategoryID, url, imageUrl, sortOrder, categoryBannerID FROM category"))
                 {
                     try
                     {
                         objConn.Open();
                         objComm.Connection = objConn;
+                        if (!showNotActive)
+                            objComm.CommandText += " WHERE active = 1";
+
+                        objComm.CommandText += " ORDER BY " + sort;
                         using (SqlDataReader reader = objComm.ExecuteReader())
                         {
                             DataRow newRow;
@@ -105,7 +109,7 @@ namespace eshopDL
         {
             int status;
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
-                using (SqlCommand objComm = new SqlCommand("UPDATE category SET name=@name, parentCategoryID=@parentCategoryID, url=@url, imageUrl=@imageUrl, sortOrder=@sortOrder, pricePercent=@pricePercent, webPricePercent=@webPricePercent, showOnFirstPage=@showOnFirstPage, numberOfProducts=@numberOfProducts, firstPageSortOrder=@firstPageSortOrder, firstPageOrderBy=@firstPageOrderBy, description=@description, categoryBannerID = @categoryBannerID WHERE categoryID=@categoryID"))
+                using (SqlCommand objComm = new SqlCommand("UPDATE category SET name=@name, parentCategoryID=@parentCategoryID, url=@url, imageUrl=@imageUrl, sortOrder=@sortOrder, pricePercent=@pricePercent, webPricePercent=@webPricePercent, showOnFirstPage=@showOnFirstPage, numberOfProducts=@numberOfProducts, firstPageSortOrder=@firstPageSortOrder, firstPageOrderBy=@firstPageOrderBy, description=@description, active = @active, categoryBannerID = @categoryBannerID WHERE categoryID=@categoryID"))
                 {
                     try
                     {

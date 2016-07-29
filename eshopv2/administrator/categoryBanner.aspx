@@ -14,7 +14,7 @@
                 <div class="btn-group">
                     <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Sačuvaj" CssClass="btn btn-primary" />
                     <asp:Button ID="btnSaveClose" runat="server" OnClick="btnSaveClose_Click" Text="Sačuvaj i zatvori" CssClass="btn btn-default" />
-                    <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Zatvori" CssClass="btn btn-default" />
+                    <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Zatvori" CssClass="btn btn-default" CausesValidation="false" />
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <customStatus:CustomStatus ID="csStatus" runat="server" />
             </div>
         </div>
-        <div class="row">
+        <div class="row margin-top-2">
             <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12">
                 <div role="form">
                     <asp:HiddenField ID="lblCategoryBannerID" runat="server" />
@@ -36,7 +36,7 @@
                         <label>Baner:</label>
                         <asp:Image ID="imgCategoryBanner" runat="server" />
                         <asp:FileUpload ID="fluImage" runat="server" />
-                        <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj baner" OnClick="btnImageUpload_Click" CssClass="btn btn-primary" />
+                        <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj baner" OnClick="btnImageUpload_Click" CssClass="btn btn-primary margin-top-05" CausesValidation="false" />
                     </div>
                     <div class="form-group">
                         <label for="txtUrl">Url:</label>

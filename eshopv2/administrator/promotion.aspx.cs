@@ -53,6 +53,7 @@ namespace eshopv2.administrator
             txtDateTo.Text = promotion.DateTo.ToString();
             Page.Title = promotion.Name;
             ViewState["pageTitle"] = promotion.Name;
+            txtUrl.Text = promotion.Url;
         }
 
         private void savePromotion()
@@ -68,6 +69,7 @@ namespace eshopv2.administrator
                 promotion.DateTo = DateTime.Parse(txtDateTo.Text).ToUniversalTime();
                 if (lblPromotionID.Value != string.Empty)
                     promotion.PromotionID = int.Parse(lblPromotionID.Value);
+                promotion.Url = txtUrl.Text;
 
                 PromotionBL promotionBL = new PromotionBL();
                 promotionBL.SavePromotion(promotion);

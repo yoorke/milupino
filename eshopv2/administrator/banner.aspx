@@ -13,11 +13,11 @@
                 <div class="btn-group">
                     <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Sačuvaj" CssClass="btn btn-primary" />
                     <asp:Button ID="btnSaveClose" runat="server" OnClick="btnSaveClose_Click" Text="Sačuvaj i zatvori" CssClass="btn btn-default" />
-                    <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Zatvori" CssClass="btn btn-default" />
+                    <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Zatvori" CssClass="btn btn-default" CausesValidation="false" />
                 </div><!--btn-group-->
             </div><!--col-->
         </div><!--row-->
-        <div class="row">
+        <div class="row margin-top-2">
             <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12">
                 <div role="form">
                     <div class="form-group">
@@ -51,7 +51,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-Width="200px">
                             <ItemTemplate>
-                                <asp:Image ID="imgBanner" runat="server" ImageUrl='<%#Eval("imageUrl") %>' />
+                                <asp:Image ID="imgBanner" runat="server" ImageUrl='<%#Eval("imageUrl") %>' CssClas="img-responsive" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Link">

@@ -58,22 +58,13 @@ namespace eshopv2 {
         protected global::System.Web.UI.WebControls.LinkButton btnSearch;
         
         /// <summary>
-        /// lblProductCount control.
+        /// lblWishListCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductCount;
-        
-        /// <summary>
-        /// lblCartPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCartPrice;
+        protected global::System.Web.UI.WebControls.Label lblWishListCount;
         
         /// <summary>
         /// loginStatus1 control.
@@ -112,6 +103,24 @@ namespace eshopv2 {
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
+        /// lblProductCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProductCount;
+        
+        /// <summary>
+        /// lblCartPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCartPrice;
+        
+        /// <summary>
         /// mainMenu2 control.
         /// </summary>
         /// <remarks>
@@ -121,13 +130,13 @@ namespace eshopv2 {
         protected global::eshopv2.user_controls.MainMenuVertical mainMenu2;
         
         /// <summary>
-        /// btnCompare control.
+        /// rptMenuActions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCompare;
+        protected global::System.Web.UI.WebControls.Repeater rptMenuActions;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

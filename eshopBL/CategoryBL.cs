@@ -146,7 +146,7 @@ namespace eshopBL
         public List<Category> GetNestedCategoriesList()
         {
             CategoryDL categoryDL = new CategoryDL();
-            DataTable categoriesDT = categoryDL.GetCategories();
+            DataTable categoriesDT = categoryDL.GetCategories("sortOrder", false);
 
             return GetCategoriesList(categoriesDT, 1);
         }
@@ -217,6 +217,16 @@ namespace eshopBL
                             newRow["categoryID"] = childCategory.CategoryID;
                             newRow["name"] = "--------" + childCategory.Name;
                             categoriesDT.Rows.Add(newRow);
+                            if(childCategory.SubCategory != null)
+                            {
+                                foreach(Category childSubCategory in childCategory.SubCategory)
+                                {
+                                    newRow = categoriesDT.NewRow();
+                                    newRow["categoryID"] = childSubCategory.CategoryID;
+                                    newRow["name"] = "----------------" + childSubCategory.Name;
+                                    categoriesDT.Rows.Add(newRow);
+                                }
+                            }
                         }
                     }
                 }

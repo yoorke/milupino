@@ -29,7 +29,7 @@ namespace eshopv2.user_controls
             if (_categoryBannerID > 0)
             {
                 eshopBE.CategoryBanner categoryBanner = new CategoryBannerBL().GetCategoryBanner(_categoryBannerID);
-                lnkCategoryBanner.NavigateUrl = "/" + categoryBanner.Url;
+                lnkCategoryBanner.NavigateUrl = "~" + categoryBanner.Url;
                 imgCategoryBanner.ImageUrl = "~/images/" + categoryBanner.ImageUrl;
             }
             else

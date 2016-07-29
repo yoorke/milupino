@@ -61,6 +61,12 @@
                         <asp:FileUpload ID="fluImage" runat="server" />
                         <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj sliku" OnClick="btnImageUpload_Click" CssClass="btn btn-primary" />
                     </div><!--form-group-->
+                    <div class="form-group">
+                        <label for="txtUrl">Url:</label>
+                        <asp:TextBox ID="txtUrl" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+
                 </div><!--form-->
             </div><!--col-->
         </div><!--row-->

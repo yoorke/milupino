@@ -25,7 +25,7 @@ namespace eshopBL
             List<Promotion> promotions = promotionDL.GetPromotions(showOnFirstPage);
 
             if (allSelection && promotions != null)
-                promotions.Insert(0, new Promotion(0, "Odaberi", 0, string.Empty, 0, false, DateTime.MinValue, DateTime.Now));
+                promotions.Insert(0, new Promotion(0, "Odaberi", 0, string.Empty, 0, false, DateTime.MinValue, DateTime.Now, string.Empty));
 
             return promotions;
         }

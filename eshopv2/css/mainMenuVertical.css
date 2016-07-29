@@ -829,7 +829,7 @@ header {
   }
   .cd-dropdown-content > .has-children > ul {
     visibility: hidden;
-    background:radial-gradient(farthest-side at 100% 100%, #b5e6f1 0%, #ffffff 100%);
+    /*background:radial-gradient(farthest-side at 100% 100%, #b5e6f1 0%, #ffffff 100%);*/
   }
   .cd-dropdown-content > .has-children > ul.is-active {
     /* when hover over .cd-dropdown-content items - show subnavigation */

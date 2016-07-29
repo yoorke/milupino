@@ -41,7 +41,7 @@ namespace eshopv2.administrator
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/administrator/categoryBanner.aspx");
+            Response.Redirect("/administrator/categoryBanners.aspx");
         }
 
         protected void btnImageUpload_Click(object sender, EventArgs e)

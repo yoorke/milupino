@@ -29,6 +29,7 @@ namespace eshopv2.administrator
             (Membership.Provider as CustomMembershipProvider).City = string.Empty;
             (Membership.Provider as CustomMembershipProvider).Phone = string.Empty;
             (Membership.Provider as CustomMembershipProvider).UserType = (CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("cmbUserType") as DropDownList).SelectedItem.Text;
+            (Membership.Provider as CustomMembershipProvider).Zip = string.Empty;
         }
 
         protected void CreateUserWizard1_Load(object sender, EventArgs e)

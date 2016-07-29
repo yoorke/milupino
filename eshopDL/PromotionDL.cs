@@ -17,7 +17,7 @@ namespace eshopDL
             int promotionID = 0;
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
             {
-                using (SqlCommand objComm = new SqlCommand("INSERT INTO promotion (name, value, imageUrl, showOnFirstPage, dateFrom, dateTo) VALUES (@name, @value, @imageUrl, @showOnFirstPage, @dateFrom, @dateTo); SELECT SCOPE_IDENTITY()", objConn))
+                using (SqlCommand objComm = new SqlCommand("INSERT INTO promotion (name, value, imageUrl, showOnFirstPage, dateFrom, dateTo, url) VALUES (@name, @value, @imageUrl, @showOnFirstPage, @dateFrom, @dateTo, @url); SELECT SCOPE_IDENTITY()", objConn))
                 {
                     objConn.Open();
                     objComm.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = promotion.Name;
@@ -26,6 +26,7 @@ namespace eshopDL
                     objComm.Parameters.Add("@showOnFirstPage", SqlDbType.Bit).Value = promotion.ShowOnFirstPage;
                     objComm.Parameters.Add("@dateFrom", SqlDbType.DateTime).Value = promotion.DateFrom;
                     objComm.Parameters.Add("@dateTo", SqlDbType.DateTime).Value = promotion.DateTo;
+                    objComm.Parameters.Add("@url", SqlDbType.NVarChar, 50).Value = promotion.Url;
 
                     promotionID = int.Parse(objComm.ExecuteScalar().ToString());
                 }
@@ -38,7 +39,7 @@ namespace eshopDL
             int status = 0;
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
             {
-                using (SqlCommand objComm = new SqlCommand("UPDATE promotion SET name=@name, value=@value, imageUrl=@imageUrl, showOnFirstPage=@showOnFirstPage, dateFrom=@dateFrom, dateTo=@dateTo WHERE promotionID=@promotionID", objConn))
+                using (SqlCommand objComm = new SqlCommand("UPDATE promotion SET name=@name, value=@value, imageUrl=@imageUrl, showOnFirstPage=@showOnFirstPage, dateFrom=@dateFrom, dateTo=@dateTo, url = @url WHERE promotionID=@promotionID", objConn))
                 {
                     objConn.Open();
                     objComm.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = promotion.Name;
@@ -48,6 +49,7 @@ namespace eshopDL
                     objComm.Parameters.Add("@showOnFirstPage", SqlDbType.Bit).Value = promotion.ShowOnFirstPage;
                     objComm.Parameters.Add("@dateFrom", SqlDbType.Date).Value = promotion.DateFrom;
                     objComm.Parameters.Add("@dateTo", SqlDbType.Date).Value = promotion.DateTo;
+                    objComm.Parameters.Add("@url", SqlDbType.NVarChar, 50).Value = promotion.Url;
 
                     status = objComm.ExecuteNonQuery();
                 }
@@ -60,7 +62,7 @@ namespace eshopDL
             List<Promotion> promotions = null;
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
             {
-                using (SqlCommand objComm = new SqlCommand("SELECT promotionID, name, value FROM promotion", objConn))
+                using (SqlCommand objComm = new SqlCommand("SELECT promotionID, name, value, url FROM promotion", objConn))
                 {
                     objConn.Open();
                     if (showOnFirstPage != null)
@@ -75,7 +77,7 @@ namespace eshopDL
                         if (reader.HasRows)
                             promotions = new List<Promotion>();
                         while (reader.Read())
-                            promotions.Add(new Promotion(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2), string.Empty, 0, false, DateTime.MinValue, DateTime.Now.AddDays(1)));
+                            promotions.Add(new Promotion(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2), string.Empty, 0, false, DateTime.MinValue, DateTime.Now.AddDays(1), !Convert.IsDBNull(reader[3]) ? reader.GetString(3) : string.Empty));
                     }
                 }
             }
@@ -87,14 +89,14 @@ namespace eshopDL
             Promotion promotion = null;
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
             {
-                using (SqlCommand objComm = new SqlCommand("SELECT promotionID, name, value, imageUrl, showOnFirstPage, dateFrom, dateTo FROM promotion WHERE promotionID=@promotionID", objConn))
+                using (SqlCommand objComm = new SqlCommand("SELECT promotionID, name, value, imageUrl, showOnFirstPage, dateFrom, dateTo, url FROM promotion WHERE promotionID=@promotionID", objConn))
                 {
                     objConn.Open();
                     objComm.Parameters.Add("@promotionID", SqlDbType.Int).Value = promotionID;
                     using (SqlDataReader reader = objComm.ExecuteReader())
                     {
                         while (reader.Read())
-                            promotion = new Promotion(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2), reader.GetString(3), 0, reader.GetBoolean(4), Common.ConvertToLocalTime(reader.GetDateTime(5)), Common.ConvertToLocalTime(reader.GetDateTime(6)));
+                            promotion = new Promotion(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2), reader.GetString(3), 0, reader.GetBoolean(4), Common.ConvertToLocalTime(reader.GetDateTime(5)), Common.ConvertToLocalTime(reader.GetDateTime(6)), !Convert.IsDBNull(reader[7]) ? reader.GetString(7) : string.Empty);
                     }
                 }
             }

@@ -15,12 +15,13 @@ namespace eshopBE
         private bool _showOnFirstPage;
         private DateTime _dateFrom;
         private DateTime _dateTo;
+        private string _url;
 
         public Promotion()
         {
         }
 
-        public Promotion(int promotionID, string name, double value, string imageUrl, double price, bool showOnFirstPage, DateTime dateFrom, DateTime dateTo)
+        public Promotion(int promotionID, string name, double value, string imageUrl, double price, bool showOnFirstPage, DateTime dateFrom, DateTime dateTo, string url)
         {
             _name = name;
             _value = value;
@@ -30,6 +31,7 @@ namespace eshopBE
             _showOnFirstPage = showOnFirstPage;
             _dateFrom = dateFrom;
             _dateTo = dateTo;
+            _url = url;
         }
 
         public int PromotionID
@@ -78,6 +80,12 @@ namespace eshopBE
         {
             get { return _dateTo; }
             set { _dateTo = value; }
+        }
+
+        public string Url
+        {
+            get { return _url; }
+            set { _url = value; }
         }
     }
 }
