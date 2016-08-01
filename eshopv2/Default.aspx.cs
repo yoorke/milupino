@@ -32,7 +32,7 @@ namespace eshopv2
             PromotionBL promotionBL = new PromotionBL();
             //ProductBL productBL = new ProductBL();
 
-            rptPromotions.DataSource = promotionBL.GetPromotions(false, true);
+            rptPromotions.DataSource = promotionBL.GetPromotions(false, true, null);
             rptPromotions.DataBind();
 
             //productSlider.NumberOfProducts = 4;

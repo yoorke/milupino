@@ -44,6 +44,9 @@ namespace eshopv2
 
             rptFt3.DataSource = new CustomPageBL().GetCustomPagesForCustomPageCategory(3);
             rptFt3.DataBind();
+
+            rptCategories.DataSource = new CategoryBL().GetNestedCategoriesList();
+            rptCategories.DataBind();
         }
 
         protected override void Render(HtmlTextWriter writer)
@@ -87,7 +90,7 @@ namespace eshopv2
 
         private void loadMenuActions()
         {
-            rptMenuActions.DataSource = new PromotionBL().GetPromotions(false, true);
+            rptMenuActions.DataSource = new PromotionBL().GetPromotions(false, null, true);
             rptMenuActions.DataBind();
         }
     }

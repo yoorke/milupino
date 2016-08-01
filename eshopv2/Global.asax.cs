@@ -83,11 +83,15 @@ namespace eshopv2
             routes.MapPageRoute("moj-nalog", "moj-nalog", "~/account.aspx");
             routes.MapPageRoute("izmena-sifre", "izmena-sifre", "~/passwordChange.aspx");
             routes.MapPageRoute("pretraga", "pretraga", "~/search.aspx");
+            
 
             foreach(CustomPage customPage in new CustomPageBL().GetCustomPages())
             {
                 routes.MapPageRoute(customPage.Url, customPage.Url, "~/customPage.aspx", false, new RouteValueDictionary { { "url", customPage.Url } });
             }
+
+            foreach (Promotion promotion in new PromotionBL().GetPromotions(false, null, null))
+                routes.MapPageRoute(promotion.Name, "akcija/" + promotion.Url, "~/promotion.aspx", false, new RouteValueDictionary { { "url", promotion.Url } });
             //routes.MapPageRoute("o-nama", "o-nama", "~/customPage.aspx", false, new RouteValueDictionary { { "url", "o-nama"} });
             //routes.MapPageRoute("gde-kupiti", "gde-kupiti", "~/customPage.aspx", false, new RouteValueDictionary { { "url", "gde-kupiti" } });
             //routes.MapPageRoute("uputstvo-za-kupovinu", "uputstvo-za-kupovinu", "~/customPage.aspx", false, new RouteValueDictionary { { "url", "uputstvo-za-kupovinu" } });

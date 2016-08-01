@@ -140,7 +140,7 @@ namespace eshopv2.administrator
             loadSupplier();
 
             PromotionBL promotionBL = new PromotionBL();
-            cmbPromotions.DataSource = promotionBL.GetPromotions(true, null);
+            cmbPromotions.DataSource = promotionBL.GetPromotions(true, null, null);
             cmbPromotions.DataTextField = "name";
             cmbPromotions.DataValueField = "promotionID";
             cmbPromotions.DataBind();

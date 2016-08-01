@@ -43,6 +43,9 @@
                         <asp:CheckBox ID="chkShowOnFirstPage" runat="server" Text="Prikaži na prvoj strani" CssClass="checkbox" />            
                     </div><!--form-group-->
                     <div class="form-group">
+                        <asp:CheckBox ID="chkShowOnMenu" runat="server" Text="Prikaži u meniju" CssClass="checkbox" />
+                    </div>
+                    <div class="form-group">
                         <label for="txtDateFrom">Od: </label>
                         <asp:TextBox ID="txtDateFrom" runat="server" CssClass="form-control"></asp:TextBox>
                         <ajaxtoolkit:CalendarExtender ID="dtpDateFrom" runat="server" TargetControlID="txtDateFrom" Format="dd.MM.yyyy"></ajaxtoolkit:CalendarExtender>

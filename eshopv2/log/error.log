@@ -1518,3 +1518,39 @@ Object reference not set to an instance of an object.
 ::1
 http://localhost:58675/Default.aspx
 
+1.8.2016. 8:12:51 - 0 - A potentially dangerous Request.Form value was detected from the client (ctl00$ContentPlaceHolder1$txtContent="<ul>
+	<li><strong>M...").
+/administrator/customPage.aspx?customPageID=2
+::1
+http://localhost:58675/administrator/customPage.aspx?customPageID=2
+
+1.8.2016. 8:15:20 - 0 - A potentially dangerous Request.Form value was detected from the client (ctl00$ContentPlaceHolder1$txtContent="<ul>
+	<li><strong>M...").
+/administrator/customPage.aspx?customPageID=2
+::1
+http://localhost:58675/administrator/customPage.aspx?customPageID=2
+
+1.8.2016. 8:16:08 - 0 - A potentially dangerous Request.Form value was detected from the client (ctl00$ContentPlaceHolder1$txtContent="<ul>
+	<li><strong>M...").
+/administrator/customPage.aspx?customPageID=2
+::1
+http://localhost:58675/administrator/customPage.aspx?customPageID=2
+
+1.8.2016. 8:16:27 - 0 - A potentially dangerous Request.Form value was detected from the client (ctl00$ContentPlaceHolder1$txtContent="<ul>
+	<li><strong>M...").
+/administrator/customPage.aspx?customPageID=2
+::1
+http://localhost:58675/administrator/customPage.aspx?customPageID=2
+
+1.8.2016. 8:16:49 - 0 - A potentially dangerous Request.Form value was detected from the client (ctl00$ContentPlaceHolder1$txtContent="<ul>
+	<li><strong>M...").
+/administrator/customPage.aspx?customPageID=2
+::1
+http://localhost:58675/administrator/customPage.aspx?customPageID=2
+
+1.8.2016. 8:18:52 - 0 - A potentially dangerous Request.Form value was detected from the client (ctl00$ContentPlaceHolder1$txtContent="<ul>
+	<li><strong>M...").
+/administrator/customPage.aspx?customPageID=2
+::1
+http://localhost:58675/administrator/customPage.aspx?customPageID=2
+

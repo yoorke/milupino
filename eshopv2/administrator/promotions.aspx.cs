@@ -33,7 +33,7 @@ namespace eshopv2.administrator
         private void loadPromotions()
         {
             PromotionBL promotionBL = new PromotionBL();
-            dgvPromotions.DataSource = promotionBL.GetPromotions(false, null);
+            dgvPromotions.DataSource = promotionBL.GetPromotions(false, null, null);
             dgvPromotions.DataBind();
         }
 

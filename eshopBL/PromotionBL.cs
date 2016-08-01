@@ -19,13 +19,13 @@ namespace eshopBL
                 return promotionDL.SavePromotion(promotion);
         }
 
-        public List<Promotion> GetPromotions(bool allSelection, bool? showOnFirstPage)
+        public List<Promotion> GetPromotions(bool allSelection, bool? showOnFirstPage, bool? showOnMenu)
         {
             PromotionDL promotionDL = new PromotionDL();
-            List<Promotion> promotions = promotionDL.GetPromotions(showOnFirstPage);
+            List<Promotion> promotions = promotionDL.GetPromotions(showOnFirstPage, showOnMenu);
 
             if (allSelection && promotions != null)
-                promotions.Insert(0, new Promotion(0, "Odaberi", 0, string.Empty, 0, false, DateTime.MinValue, DateTime.Now, string.Empty));
+                promotions.Insert(0, new Promotion(0, "Odaberi", 0, string.Empty, 0, false, DateTime.MinValue, DateTime.Now, string.Empty, false));
 
             return promotions;
         }
@@ -45,6 +45,11 @@ namespace eshopBL
         public DataTable GetActive()
         {
             return new PromotionDL().GetActive();
+        }
+
+        public Promotion GetPromotion(string url)
+        {
+            return new PromotionDL().GetPromotion(url);
         }
     }
 }

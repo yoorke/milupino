@@ -121,6 +121,15 @@ namespace eshopv2.administrator {
         protected global::System.Web.UI.WebControls.CheckBox chkShowOnFirstPage;
         
         /// <summary>
+        /// chkShowOnMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkShowOnMenu;
+        
+        /// <summary>
         /// txtDateFrom control.
         /// </summary>
         /// <remarks>

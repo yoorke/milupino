@@ -88,10 +88,10 @@
     <div id="header" class="container">
         <!--<div class="container">-->
             <div class="row">
-                <div class="col-xs-6 col-md-3 col-lg-3 col-sm-3 padding-left-0">
+                <div class="col-xs-12 col-md-3 col-lg-3 col-sm-3 padding-left-0">
                     <a href="/"><img src="<%=ResolveUrl("~/images/milupino.png") %>" alt="Milupino logo" class="img-responsive" style="height:100px" /></a>
                 </div><!--col-->
-                <div class="col-lg-6 col-md-6 col-sm-6 text-left hidden-xs">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-left hidden-xs">
                     <!--<img src="<%=ResolveUrl("~/images/header_img.png") %>" alt="WebShop - Vaša online prodavnica" class="img-responsive margin-top-2 center-block" />-->
                     <div class="row margin-top-2">
                         <div class="col-xs-12">
@@ -111,7 +111,7 @@
                     
                 </div><!--col-->
                 <%--<div class="col-lg-1"></div>--%>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 kontakt">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 kontakt">
                     <div class="row margin-top-2">
                         <div class="col-md-4">
                             <div id="wishListFP">
@@ -234,6 +234,7 @@
                                             <%--<li><a href="/moj-nalog">Moj nalog</a></li> --%>
                                             <%--<li><a href="/korpa">Korpa</a></li>--%>
                                             <%--<li><a href="/porucivanje">Poručivanje</a></li>--%>
+                                            <li><a href="/milupino-prodavnice">Milupino prodavnice</a></li>
                                             <li><a href="/kontakt">KOntakt</a></li>
                                         </ul>
                                     </div>
@@ -301,14 +302,15 @@
         <div class="container">
             <div class="row footer-top">
                 <div class="col-lg-3">
-                    <h4>Informacije</h4>
-                    <asp:Repeater ID="rptFt1" runat="server">
+                    <h4>Proizvodi</h4>
+                    <asp:Repeater ID="rptCategories" runat="server">
                         <HeaderTemplate><ul></HeaderTemplate>
                         <ItemTemplate>
-                            <li><asp:HyperLink ID="lnkCustomPage" runat="server" NavigateUrl='<%# ResolveUrl("~/" + Eval("url")) %>' Text='<%#Eval("title") %>'></asp:HyperLink></li>
+                            <li><asp:HyperLink ID="lnkCategory" runat="server" NavigateUrl='<%# "/proizvodi/" + Eval("url") %>' Text='<%# Eval("name") %>'></asp:HyperLink></li>
                         </ItemTemplate>
                         <FooterTemplate></ul></FooterTemplate>
                     </asp:Repeater>
+                    
                         
                     <%--<ul>
                         <li><a href="#">O nama</a></li>
@@ -317,9 +319,28 @@
                         <li><a href="#">Pin servis aktuelnosti</a></li>
                     </ul>--%>
                 </div><!--col-->
+                <div class="col-lg-3">
+                    <h4>Informacije</h4>
+                    <asp:Repeater ID="rptFt1" runat="server">
+                        <HeaderTemplate><ul></HeaderTemplate>
+                        <ItemTemplate>
+                            <li><asp:HyperLink ID="lnkCustomPage" runat="server" NavigateUrl='<%# ResolveUrl("~/" + Eval("url")) %>' Text='<%#Eval("title") %>'></asp:HyperLink></li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <li><a href="/kontakt">Kontaktirajte nas</a></li>
+                            </ul>
+
+                        </FooterTemplate>
+                    </asp:Repeater>
+                    <h4 class="margin-top-2">Ponude</h4>
+                    <ul>
+                        <li><a href="">Outlet - uvek niske cene</a></li>
+                        <li><a href="">Akcije - privremeno snižene cene</a></li>
+                    </ul>
+                </div>
                 
                 <div class="col-lg-3">
-                    <h4>Pomoć pri kupovini</h4>
+                    <h4>Kupovina</h4>
                     <asp:Repeater ID="rptFt2" runat="server">
                         <HeaderTemplate><ul></HeaderTemplate>
                         <ItemTemplate>
@@ -327,6 +348,15 @@
                         </ItemTemplate>
                         <FooterTemplate></ul></FooterTemplate>
                     </asp:Repeater>
+
+                    <h4>Poslovanje</h4>
+                    <asp:Repeater ID="rptFt3" runat="server">
+                        <HeaderTemplate><ul></HeaderTemplate>
+                        <ItemTemplate>
+                            <li><asp:HyperLink ID="lnkCustomPage" runat="server" NavigateUrl='<%# ResolveUrl("~/" + Eval("url")) %>' Text='<%#Eval("title") %>'></asp:HyperLink></li>
+                        </ItemTemplate>
+                        <FooterTemplate></ul></FooterTemplate>
+                    </asp:Repeater>    
                     
                     <%--<ul>
                         <li><a href="#">Kako kupiti ONLINE</a></li>
@@ -335,16 +365,10 @@
                     </ul>--%>
                 </div><!--col-->
                 
-                <div class="col-lg-4">
-                    <h4>Korisnički servis</h4>
+                <%--<div class="col-lg-4">--%>
+                    <%--<h4>Korisnički servis</h4>--%>
                     
-                    <asp:Repeater ID="rptFt3" runat="server">
-                        <HeaderTemplate><ul></HeaderTemplate>
-                        <ItemTemplate>
-                            <li><asp:HyperLink ID="lnkCustomPage" runat="server" NavigateUrl='<%# ResolveUrl("~/" + Eval("url")) %>' Text='<%#Eval("title") %>'></asp:HyperLink></li>
-                        </ItemTemplate>
-                        <FooterTemplate></ul></FooterTemplate>
-                    </asp:Repeater>    
+                    
                     <%--<ul>
                         <li><a href="#">Povraćaj robe</a></li>
                         <li><a href="#">Rokovi isporuke</a></li>
@@ -352,10 +376,19 @@
                         <li><a href="#">Garancije / Reklamacije / Servis</a></li>
                         <li><a href="#">Kontakti ovlašćenih servisera</a></li>
                     </ul>--%>
-                </div><!--col-->
+                <%--</div><!--col-->--%>
                 
-                <div class="col-lg-2">
-                    <h4>Pratite nas</h4>
+                <div class="col-lg-3 footer-right">
+                    <div class="phone">
+                        <img src="/images/phone.png" class="img-responsive phone" />
+                        <span class="phone">060 515 4110</span>
+                    </div>
+                    <div class="workingHours">
+                        <p>Radno vreme online prodavnice</p>
+                        <p>Podeneljak - Subota: 08:00 - 20:00</p>
+                        <p>Nedeljom ne radimo</p>
+                    </div>
+                    <%--<h4>Pratite nas</h4>--%>
                     <a href="http://www.facebook.com/milupino.zr" target="_blank"><img src="<%= ResolveUrl("~/images/Facebook_New_Logo_(2015).svg.png")  %>" class="img-responsive" /></a>
                     <%--<img src="<%= ResolveUrl("~/images/twitter.jpg") %>" />
                     <img src="<%= ResolveUrl("~/images/google.jpg")  %>" />
@@ -365,18 +398,29 @@
                 </div><!--col-->
             </div><!--row-->
             <div class="row footer-center">
-                <div class="col-lg-12">
-                    <div class="wrapper">
-                        <p><a href="/uslovi-koriscenja">Uslovi korišćenja</a> | <a href="/politika-privatnosti">Politika privatnosti</a> |
-                        <span>2015 Str Stil. Sva prava zadržana.</span></p>
-                        <p>Cene na sajtu su izražene u dinarima sa uračuatim porezom i plaćanje se vrši isključivo u dinarima.</p>
-                        <p>Nastojimo da budemo što precizniji u opisu proizvoda, prikazu slika i samih cena, ali ne možemo garantovati da su sve informacije kompletne i bez grešaka.</p>
-                        <p>Svi artikli prikazani na sajtu su deo naše ponude i ne podrazumeva se da su dostupni u svakom trenutku.</p>
-                    </div>
-                </div><!--col-->
+                <div class="col-lg-4 text-left">
+                    <img src="/images/maestro-logo.jpg" />
+                    <img src="/images/master-logo.jpg" />
+                    <img src="/images/visa-logo.jpg" />
+                    <img src="/images/raiffeisen-logo.jpg" />
+                </div>
+                <div class="col-lg-2 pull-right">
+                    <span>Ecommerce Solution</span>
+                </div>
+                
             </div><!--row-->
             <div class="row footer-bottom">
-                <div class="col-xs-12">
+                <div class="col-lg-9">
+                    <div class="wrapper">
+                        <%--<p><a href="/uslovi-koriscenja">Uslovi korišćenja</a> | <a href="/politika-privatnosti">Politika privatnosti</a> |--%>
+                        
+                        <p>Cene na sajtu su izražene u dinarima sa uračuatim porezom i plaćanje se vrši isključivo u dinarima.
+                        Nastojimo da budemo što precizniji u opisu proizvoda, prikazu slika i samih cena, ali ne možemo garantovati da su sve informacije kompletne i bez grešaka.
+                        Svi artikli prikazani na sajtu su deo naše ponude i ne podrazumeva se da su dostupni u svakom trenutku.</p>
+                    </div>
+                </div><!--col-->
+                <div class="col-xs-3 text-right footer-bottom-right">
+                    <span>2015 Str Stil. Sva prava zadržana.</span>
                     <img src="<%=ResolveUrl("~/images/logo-bottom-milupino.png") %>" alt="PinShop logo" class="img-responsive center-block margin-top-05" />
                 </div><!--col-->
             </div><!--row-->
