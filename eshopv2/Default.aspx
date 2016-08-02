@@ -71,15 +71,15 @@
             </div><!--row-slider-->
 
             <!--Banners-->
-            <div class="row margin-top-05 margin-bottom-05">
-                <div class="col-lg-3 bannerFP padding-left-0">
+            <div class="row margin-bottom-05 banners">
+                <div class="col-sm-3 bannerFP padding-left-0 fp1">
                     <banner:Banner ID="banner1" runat="server" Position="FP1" />
                 </div>
-                <div class="col-lg-6 bannerFP">
+                <div class="col-sm-6 bannerFP">
                     <banner:Banner ID="banner2" runat="server" Position="FP2" />
                 </div>
-                <div class="col-lg-3 bannerFP padding-right-0">
-                    <banner:Banner ID="banner3" runat="server" Position="FP3" class="fp3" />
+                <div class="col-sm-3 bannerFP padding-right-0 fp3">
+                    <banner:Banner ID="banner3" runat="server" Position="FP3" />
                 </div>
             </div>
             <!--PRODUCT SLIDER-->

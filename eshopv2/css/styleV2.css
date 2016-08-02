@@ -302,6 +302,19 @@ body
 #header-bottom .navbar-toggle
 {
 	padding:0 !important;
+    margin:1em 0;
+    /*border-color:#eeeeee;*/
+    border:none;
+    font-size:1.2em;
+    color:#eeeeee;
+}
+
+#header-bottom .navbar-toggle .icon-bar{
+    /*background-color:#eeeeee;*/
+}
+
+#header-bottom .navbar-toggle:hover, #header-bottom .navbar-toggle:focus{
+    background-color:transparent;
 }
 
 #header-bottom .navbar-default .nav li.action{
@@ -627,10 +640,17 @@ body
 }
 
 .footer-top .footer-right{
-    background:url('../images/footer-border.jpg') left top no-repeat;
-    background-size:contain;
+    
+    
     padding:1em 2em;
     padding-bottom:2em;
+}
+
+@media only screen and (min-width:768px){
+    .footer-top .footer-right{
+        background:url('../images/footer-border.jpg') left top no-repeat;
+        background-size:contain;
+    }
 }
 
 .footer-top .footer-right div.phone{
@@ -668,7 +688,7 @@ body
 	text-align:center;
     border-top:2px solid #ff3b3f;
     color:#eeeeee;
-    font-size:0.9em;
+    font-size:0.8em;
     text-align:left;
     padding:0.5em 0;
 }
@@ -1610,12 +1630,27 @@ table.orderItems {
 }
 
 .bannerFP img{
-    max-height:240px;
     margin:0 auto;
 }
 
-.bannerFP .fp3 img{
-    float:right;
+@media only screen and (min-width:940px){
+    .bannerFP.fp3 img{
+        float:right;
+    }
+
+    .bannerFP.fp1 img{
+        float:left;
+    }
+
+    .bannerFP img{
+    max-height:240px;
+    margin:0 auto;
+}
+}
+
+.banners{
+    background-color:#eeeeee;
+    padding:0.5em 0;
 }
 
 #header #wishListFP{
@@ -1632,7 +1667,7 @@ table.orderItems {
 }
 
 #header #wishListFP img{
-    position:absolute;
+    /*position:absolute;*/
     top:2px;
     left:0px;
     max-width:30px;

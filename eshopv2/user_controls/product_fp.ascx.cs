@@ -60,7 +60,7 @@ namespace eshopv2.user_controls
             string url = _product.Url;  //"/product.aspx?productUrl=" + _product.ProductID;
             lblName.NavigateUrl = "~" + url;
             //lblDescription.Text = _product.Description.Length > 100 ? _product.Description.Substring(0, 100) : _product.Description;
-            lblDescription.Text = "Opis proizvoda rewr werwe rwerwe rwer wer wer werw erw er";
+            //lblDescription.Text = "Opis proizvoda rewr werwe rwerwe rwer wer wer werw erw er";
             lnkPhoto.NavigateUrl = "~" + url;
             lblDetails.NavigateUrl = "~" + url;
             //lblBrand.NavigateUrl = url;
