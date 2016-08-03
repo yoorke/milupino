@@ -177,3 +177,8 @@
     height:1em;
     margin-right:0.5em;
 }
+
+.errorControl{
+    background-color:#fbe3e4;
+    border:1px solid red;
+}

@@ -75,6 +75,7 @@
                                     <div class="form-group">
                                         <label for="txtCode">Šifra:</label>
                                         <asp:TextBox ID="txtCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="requiredFiledValidator1" runat="server" ControlToValidate="txtCode" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
                                     <div class="form-group">
                                         <label for="txtEan">Ean:</label>
@@ -103,6 +104,7 @@
                                     <div class="form-group">
                                         <label role="txtName">Naziv:</label>
                                         <asp:TextBox ID="txtName" runat="server" CssClass="form-control"></asp:TextBox>                
+                                        <asp:RequiredFieldValidator ID="requiredFieldValidator2" runat="server" ControlToValidate="txtName" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
                                     <div class="form-group">
                                         <label for="txtDescription">Opis:</label>
@@ -124,10 +126,12 @@
                                     <div class="form-group">
                                         <label for="txtPrice">Cena:</label>
                                         <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control text-right"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="requiredFieldValidator3" runat="server" ControlToValidate="txtPrice" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
                                     <div class="form-group">
                                         <label for="txtWebPrice">Web cena:</label>
                                         <asp:TextBox ID="txtWebPrice" runat="server" CssClass="form-control text-right"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="requiredFieldValidator4" runat="server" ControlToValidate="txtWebPrice" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
                                     <div class="form-group">
                                         <label for="cmbVat">PDV:</label>

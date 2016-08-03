@@ -321,7 +321,7 @@
                     <asp:Repeater ID="rptCategories" runat="server">
                         <HeaderTemplate><ul></HeaderTemplate>
                         <ItemTemplate>
-                            <li><asp:HyperLink ID="lnkCategory" runat="server" NavigateUrl='<%# "/proizvodi/" + Eval("url") %>' Text='<%# Eval("name") %>'></asp:HyperLink></li>
+                            <li><asp:HyperLink ID="lnkCategory" runat="server" NavigateUrl='<%# Eval("url") %>' Text='<%# Eval("name") %>'></asp:HyperLink></li>
                         </ItemTemplate>
                         <FooterTemplate></ul></FooterTemplate>
                     </asp:Repeater>

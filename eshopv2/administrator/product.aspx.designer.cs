@@ -166,6 +166,15 @@ namespace eshopv2.administrator {
         protected global::System.Web.UI.WebControls.TextBox txtCode;
         
         /// <summary>
+        /// requiredFiledValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFiledValidator1;
+        
+        /// <summary>
         /// txtEan control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace eshopv2.administrator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+        
+        /// <summary>
+        /// requiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator2;
         
         /// <summary>
         /// txtDescription control.
@@ -265,6 +283,15 @@ namespace eshopv2.administrator {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
+        /// requiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator3;
+        
+        /// <summary>
         /// txtWebPrice control.
         /// </summary>
         /// <remarks>
@@ -272,6 +299,15 @@ namespace eshopv2.administrator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtWebPrice;
+        
+        /// <summary>
+        /// requiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator4;
         
         /// <summary>
         /// cmbVat control.
