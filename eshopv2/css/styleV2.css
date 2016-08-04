@@ -457,7 +457,7 @@ body
 	/*border-right:5px solid #b3b3b3;*/
 	/*min-width:213px;*/
 	padding:0px;
-	background-color:#ffffff;
+	background-color:#f8f8f8;
 }
 
 #content .main-content
@@ -655,6 +655,7 @@ body
 
 .footer-top .footer-right div.phone{
     padding:0.5em;
+    overflow:auto;
 }
 
 .footer-top .footer-right img.phone{
@@ -669,6 +670,10 @@ body
     display:inline-block;
     margin-left:0.5em;
     margin-top:0.2em;
+}
+
+.footer-top .footer-right span.city{
+    margin-left:0.5em;
 }
 
 .footer-top .footer-right .workingHours{
@@ -1168,7 +1173,7 @@ body
 	font-size:1.1em;
 	text-transform:uppercase;
 	text-align:center;
-	background-color:#e31c24;
+	background-color:#ff3b3f;
 	padding:5px 0px;
 	color:#ffffff;
 	box-shadow:0px 2px 3px 1px #aaaaaa;

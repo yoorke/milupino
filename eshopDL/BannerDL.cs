@@ -26,7 +26,7 @@ namespace eshopDL
                         objComm.Parameters.Clear();
                         objComm.Parameters.Add("bannerPositionID", SqlDbType.Int).Value = banner.BannerPositionID;
                         objComm.Parameters.Add("@imageUrl", SqlDbType.NVarChar, 50).Value = banner.Banners[i].ImageUrl;
-                        objComm.Parameters.Add("@url", SqlDbType.NVarChar, 50).Value = banner.Banners[i].Url;
+                        objComm.Parameters.Add("@url", SqlDbType.NVarChar, 100).Value = banner.Banners[i].Url;
 
                         status = objComm.ExecuteNonQuery();
                     }

@@ -113,6 +113,8 @@
                 createQueryString();
             })
 
+            $('.left-column').height($('.main-content').height());
+
         })
 
         function createQueryString() {

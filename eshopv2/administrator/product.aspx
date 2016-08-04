@@ -171,7 +171,7 @@
                                   
                                             <asp:Image ID="imgProduct" runat="server" ImageUrl='<%#Container.DataItem %>' Width="50px" Height="50px" BorderStyle="Solid" />
                                             <asp:Label ID="lblImageUrl" runat="server" Text='<%# Container.DataItem %>' CssClass="imageUrl"></asp:Label>
-                                            <asp:LinkButton ID="btnDelete" CommandName="delete" runat="server" Text="Obriši"></asp:LinkButton>
+                                            <asp:LinkButton ID="btnDelete" CommandName="delete" runat="server" Text="Obriši" CausesValidation="false"></asp:LinkButton>
                                         </div><!--productImage-->
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -184,7 +184,7 @@
                         </div><!--row-->
                         <div class="row margin-top-05">
                             <div class="col-lg-5">
-                                <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj" OnClick="btnImageUpload_Click" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj" OnClick="btnImageUpload_Click" CssClass="btn btn-primary" CausesValidation="false" />
                             </div><!--col-->
                         </div><!--row-->
                     </div><!--tab-pane-->
