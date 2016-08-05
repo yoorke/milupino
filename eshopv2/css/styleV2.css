@@ -674,6 +674,7 @@ body
 
 .footer-top .footer-right span.city{
     margin-left:0.5em;
+    display:block;
 }
 
 .footer-top .footer-right .workingHours{
