@@ -29,7 +29,7 @@
                     <div class="row padding-left-05 padding-right-05">
                         <asp:Repeater ID="rptProducts" runat="server">
                             <ItemTemplate>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 padding-left-0 padding-right-0">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 padding-left-0 padding-right-0">
                                     <product_fp:ProductFirstPage ID="productFirstPage1" runat="server" ProductItem='<%#Container.DataItem %>' />
                                 </div>
                             </ItemTemplate>

@@ -57,7 +57,7 @@ namespace eshopv2
                 //Repeater rptProducts = (Repeater)e.Item.FindControl("rptProducts");
                user_controls.product_slider productSlider = (user_controls.product_slider)e.Item.FindControl("productSlider1");
                 ProductBL productBL = new ProductBL();
-                productSlider.NumberOfProducts = 4;
+                productSlider.NumberOfProducts = 6;
                 productSlider.Products = productBL.GetProductsForPromotion(int.Parse(((HiddenField)e.Item.FindControl("lblPromotionID")).Value));
                 //((HtmlControl)productSlider.FindControl("carouselexample")).Attributes["id"] = "carousel" + ((HiddenField)e.Item.FindControl("lblPromotionID")).Value;
                 ((Literal)productSlider.FindControl("lblPrev")).Text = @"<a id=""prev"" runat=""server"" href=" + "#carousel" + ((HiddenField)e.Item.FindControl("lblPromotionID")).Value + @" data-slide=""prev""><img src=" + Page.ResolveUrl("~/images/prev_next.gif") + @" alt=""Prethodni"" /></a>";
@@ -75,7 +75,7 @@ namespace eshopv2
                 //Repeater rptProducts = (Repeater)e.Item.FindControl("rptCategoryProducts");
                 user_controls.product_slider productSlider = (user_controls.product_slider)e.Item.FindControl("productSlider2");
                 ProductBL productBL = new ProductBL();
-                productSlider.NumberOfProducts = 4;
+                productSlider.NumberOfProducts = 6;
                 productSlider.Products = productBL.GetProductsForFirstPage(int.Parse(((HiddenField)e.Item.FindControl("lblCategoryID")).Value), 8, "Slučajni");
                 //((HtmlControl)productSlider.FindControl("prev")).Attributes.Add("href", Page.ResolveUrl("~/#carousel" + ((HiddenField)e.Item.FindControl("lblCategoryID")).Value));
                 //((HtmlControl)productSlider.FindControl("prev")).Attributes["href"] = ((HtmlControl)productSlider.FindControl("prev")).Attributes["href"].Remove(0, 1);

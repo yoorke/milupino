@@ -55,7 +55,7 @@
     <div id="top">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-sm-4">
                     <%--<div class="row">--%>
                         <%--<div class="col-md-3 padding-left-0 padding-right-0">--%>
                             <a href="/besplatna-dostava" class="margin-right-05"><span class="fa fa-fw fa-truck"></span> Besplatna dostava</a>
@@ -64,21 +64,21 @@
                             <a href="/povracaj-robe" class="margin-right-05"><span class="fa fa-fw fa-history"></span>Povraćaj robe</a>
                         <%--</div>--%>
                         <%--<div class="col-md-3 padding-left-0 padding-left-0">--%>
-                            <a href="/rokovi-isporuke"><span class="fa fa-fw fa-clock-o"></span> Rokovi isporuke</a>
+                            <%--<a href="/rokovi-isporuke"><span class="fa fa-fw fa-clock-o"></span> Rokovi isporuke</a>--%>
                         <%--</div>--%>
                     <%--</div>--%>
                 </div>
-                <div class="col-md-3 text-center">
+                <div class="col-sm-4 text-center">
                     <div class="row">
                         <div class="col-lg-12">
-                            <span>Call centar: <strong>060 515 4110</strong></span>
+                            <span>Call centar <small>Zrenjanin</small>: <strong>060 515 4110</strong></span>
                         </div>
                     </div>
-                    <div class="row">
+                    <%--<div class="row">
                         <div class="col-lg-12">
                             <span><small>Zrenjanin</small></span>
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
                 <div>
                     
@@ -87,7 +87,7 @@
                 <%--<div class="col-md-1 pull-right text-right">
                     <a href="/kontakt" class="kontakt">Kontakt</a>
                 </div>--%>
-                <div class="col-md-4 pull-right text-right">
+                <div class="col-sm-4 pull-right text-right">
                     <asp:LoginView ID="loginView1" runat="server">
                         <AnonymousTemplate>
                             <asp:HyperLink ID="lnkLogin" runat="server" Text="Prijava"></asp:HyperLink> / <asp:HyperLink ID="lnkCreateUser" runat="server" Text="Registracija"></asp:HyperLink>
