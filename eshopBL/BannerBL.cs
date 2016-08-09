@@ -11,8 +11,16 @@ namespace eshopBL
     {
         public int SaveBanner(Banner banner)
         {
-            BannerDL bannerDL = new BannerDL();
-            return bannerDL.SaveBanner(banner);
+            //BannerDL bannerDL = new BannerDL();
+            //return bannerDL.SaveBanner(banner);
+            foreach(BannerItem item in banner.Banners)
+            {
+                if (item.BannerID > 0)
+                    new BannerDL().UpdateBannerItem(item, banner.BannerPositionID);
+                else
+                    new BannerDL().SaveBannerItem(item, banner.BannerPositionID);
+            }
+            return 1;
         }
 
         public List<BannerItem> GetBannersForPosition(int bannerPositionID)

@@ -56,7 +56,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Link">
                             <ItemTemplate>
-                                <asp:Label ID="lblLink" runat="server" Text='<%#Eval("url") %>'></asp:Label>
+                                <asp:TextBox ID="txtLink" runat="server" Text='<%#Eval("url") %>'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="~/images/delete_icon.png" ButtonType="Image" ControlStyle-Width="20px" />

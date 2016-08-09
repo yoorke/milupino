@@ -106,6 +106,15 @@ namespace eshopv2.administrator
         {
             Banner banner = new Banner();
             banner.BannerPositionID = int.Parse(cmbPosition.SelectedValue);
+
+            int index = 0;
+            if (ViewState["images"] != null)
+                foreach (GridViewRow row in dgvBanners.Rows)
+                {
+                    ((List<BannerItem>)ViewState["images"])[index].Url = ((TextBox)row.FindControl("txtLink")).Text;
+                    index++;
+                }
+
             banner.Banners = (List<BannerItem>)ViewState["images"];
 
             BannerBL bannerBL = new BannerBL();

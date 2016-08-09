@@ -63,9 +63,9 @@
                                 <asp:Image ID="imgSliderItem" runat="server" ImageUrl='<%#Eval("imageUrl") %>' Width="150px" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Url" ControlStyle-Width="100px" Visible="false">
+                        <asp:TemplateField HeaderText="Url">
                             <ItemTemplate>
-                                <asp:Label ID="lblImageUrl" runat="server" Text='<%#Eval("imageUrl") %>'></asp:Label>
+                                <asp:TextBox ID="txtUrl" runat="server" Text='<%#Eval("url") %>'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Sortiraj" ControlStyle-Width="20px">

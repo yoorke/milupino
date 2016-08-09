@@ -113,6 +113,12 @@ namespace eshopv2.administrator
 
             if (ViewState["images"] != null)
             {
+                int index = 0;
+                foreach (GridViewRow row in dgvImages.Rows) { 
+                    ((List<SliderItem>)ViewState["images"])[index].Url = ((TextBox)row.FindControl("txtUrl")).Text;
+                    ((List<SliderItem>)ViewState["images"])[index].SortIndex = index;
+                    index++;
+                }
                 List<SliderItem> images = (List<SliderItem>)ViewState["images"];
                 slider.Items = new List<SliderItem>();
                 foreach (SliderItem item in images)

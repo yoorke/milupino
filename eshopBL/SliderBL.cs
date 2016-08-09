@@ -25,7 +25,16 @@ namespace eshopBL
         public DataTable GetSliders()
         {
             SliderDL sliderDL = new SliderDL();
-            return sliderDL.GetSliders();
+            DataTable sliders = sliderDL.GetSliders();
+            //if(addSelect)
+            //{
+                //DataRow row = sliders.NewRow();
+                //row[0] = 0;
+                //row[1] = "Odaberi slider";
+                //row[2] = true;
+                //sliders.Rows.InsertAt(row, 0);
+            //}
+            return sliders;
         }
 
         public int SaveSliderItem(SliderItem item)

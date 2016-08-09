@@ -129,5 +129,49 @@ namespace eshopDL
             }
             return bannerPositions;
         }
+
+        public int SaveBannerItem(BannerItem item, int bannerPositionID)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("bannerItem_insert", objConn))
+                {
+                    objConn.Open();
+                    objComm.CommandType = CommandType.StoredProcedure;
+                    objComm.Parameters.Add("@bannerPositionID", SqlDbType.Int).Value = bannerPositionID;
+                    objComm.Parameters.Add("@imageUrl", SqlDbType.NVarChar, 50).Value = item.ImageUrl;
+                    objComm.Parameters.Add("@url", SqlDbType.NVarChar, 100).Value = item.Url;
+
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            status = reader.GetInt32(0);
+                    }
+                        
+                }
+            }
+            return status;
+        }
+
+        public int UpdateBannerItem(BannerItem item, int bannerPositionID)
+        {
+            int status = 0;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("bannerItem_update", objConn))
+                {
+                    objConn.Open();
+                    objComm.CommandType = CommandType.StoredProcedure;
+                    objComm.Parameters.Add("@bannerPositionID", SqlDbType.Int).Value = bannerPositionID;
+                    objComm.Parameters.Add("@imageUrl", SqlDbType.NVarChar, 50).Value = item.ImageUrl;
+                    objComm.Parameters.Add("@url", SqlDbType.NVarChar, 100).Value = item.Url;
+                    objComm.Parameters.Add("@bannerID", SqlDbType.Int).Value = item.BannerID;
+
+                    status = objComm.ExecuteNonQuery();
+                }
+            }
+            return status;
+        }
     }
 }
