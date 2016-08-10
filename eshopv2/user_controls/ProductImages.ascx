@@ -23,9 +23,15 @@
     function changeImg(imageUrl)
     {
         var image = document.getElementById("ctl00_ContentPlaceHolder1_priProductImages_imgMain");
-        image.src = imageUrl.toString().substring(0, imageUrl.toString().indexOf("-small")) + "-large.jpg";
+        if (imageUrl.toString().indexOf("-small") > 0)
+            image.src = imageUrl.toString().substring(0, imageUrl.toString().indexOf("-small")) + "-large.jpg";
+        else
+            image.src = imageUrl.toString().substring(0, imageUrl.toString().indexOf("-thumb")) + "-large.jpg";
         var link = document.getElementById("ctl00_ContentPlaceHolder1_priProductImages_lnkImage");
-        link.href = imageUrl.toString().substring(0, imageUrl.toString().indexOf("-small"))+".jpg";
+        if (imageUrl.toString().indexOf("-small") > 0)
+            link.href = imageUrl.toString().substring(0, imageUrl.toString().indexOf("-small")) + ".jpg";
+        else
+            link.href = imageUrl.toString().substring(0, imageUrl.toString().indexOf("-thumb")) + ".jpg";
     }
     
 </script>

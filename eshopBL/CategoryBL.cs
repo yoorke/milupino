@@ -302,5 +302,10 @@ namespace eshopBL
         {
             return new CategoryDL().GetBrandsForCategoryExtraMenu(categoryExtraMenuID, categoryID);
         }
+
+        public List<Category> GetChildrenCategories(int categoryID)
+        {
+            return new CategoryDL().GetSubcategories(categoryID);
+        }
     }
 }

@@ -276,9 +276,10 @@ namespace eshopv2.administrator
                 thumb.Save(Server.MapPath("~") + directory + imageID.ToString() + "-home.jpg");
 
                 //thumb = original.GetThumbnailImage(30, (int)((10*y)/x), null, IntPtr.Zero);
-                thumb = Common.CreateThumb(original, 30, 23);
+                thumb = Common.CreateThumb(original, 45, 35);
                 //thumb.Save(path + fluImage.FileName.Substring(0, fluImage.FileName.IndexOf(".jpg")) + "-thumb.jpg");
                 thumb.Save(Server.MapPath("~") + directory + imageID.ToString() + "-thumb.jpg");
+                thumb.Save(Server.MapPath("~") + directory + imageID.ToString() + "-small.jpg");
 
                 original.Dispose();
 

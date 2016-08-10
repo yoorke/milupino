@@ -1698,3 +1698,18 @@ table.orderItems {
 #header #wishListFP a{
     color:#444444;
 }
+
+.left-column ul.subcategories{
+    list-style-type:none;
+}
+
+.left-column ul.subcategories li a{
+    color:#444444;
+    margin:0.5em 0;
+    display:block;
+}
+
+.left-column ul.subcategories li a:hover{
+    text-decoration:none;
+    color:#ff3b3f;
+}

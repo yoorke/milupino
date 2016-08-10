@@ -28,6 +28,22 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+        <h2><asp:Literal id="lblParentCategory" runat="server"></asp:Literal></h2>
+        <div class="filterBox">
+            <asp:Repeater ID="rptSubcategories" runat="server">
+                <HeaderTemplate>
+                    <ul class="subcategories">
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <li>
+                        <asp:HyperLink ID="lnkSubcategory" runat="server" NavigateUrl='<%#"/proizvodi/" + Eval("url") %>' Text='<%#Eval("name") %>'></asp:HyperLink>
+                    </li>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </ul>
+                </FooterTemplate>
+            </asp:Repeater>
+        </div>
     </div>
     <div class="col-xs-7 col-sm-10 col-md-10, col-lg-10 main-content first-page">
         <div class="row">

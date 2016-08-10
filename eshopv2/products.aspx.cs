@@ -118,6 +118,9 @@ namespace eshopv2
                 ViewState["pageTitle"] = category.Name + " | Milupino";
                 ViewState["categoryUrl"] = category.Url;
 
+                lblParentCategory.Text = new CategoryBL().GetCategory((int)category.ParentCategoryID).Name;
+                loadSubcategories(category);
+
                 
 
                 createQueryString();
@@ -306,6 +309,12 @@ namespace eshopv2
                 rptProducts.DataBind();
                 divStatus.Visible = true;
             }
+        }
+
+        private void loadSubcategories(Category category)
+        {
+            rptSubcategories.DataSource = new CategoryBL().GetChildrenCategories((int)category.ParentCategoryID);
+            rptSubcategories.DataBind();
         }
     }
 }

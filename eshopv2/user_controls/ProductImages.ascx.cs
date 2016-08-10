@@ -45,7 +45,7 @@ namespace eshopv2.user_controls
                         ImageButton image = new ImageButton();
                         image.ID = "imgThumb" + i.ToString();
                         //image.ImageUrl = !_images[i].Contains("no-image.jpg") ? _images[i].Substring(0, _images[i].IndexOf(".jpg")) + "-thumb.jpg" : _images[i];
-                        image.ImageUrl = !_images[i].Contains("no-image.jpg") ? _images[i].Substring(0, _images[i].IndexOf(".jpg")) + "-small.jpg" : _images[i];
+                        image.ImageUrl = !_images[i].Contains("no-image.jpg") ? (System.IO.File.Exists(Server.MapPath("~" + _images[i].Substring(0, _images[i].IndexOf(".jpg")) + "-small.jpg")) ? _images[i].Substring(0, _images[i].IndexOf(".jpg")) + "-small.jpg" : _images[i].Substring(0, _images[i].IndexOf(".jpg")) + "-thumb.jpg") : _images[i];
                         image.CssClass = "thumb img-responsive";
                         //image.Click += new ImageClickEventHandler(image_Click);
                         image.OnClientClick = "changeImg(this.src);return false;";
