@@ -113,7 +113,7 @@
                     <div class="row margin-top-2">
                         <div class="col-xs-12">
                             <div id="search">
-                                <%--<asp:Panel DefaultButton="btnSearch" runat="server">--%>
+                                <asp:Panel DefaultButton="btnSearch" runat="server">
                                     <div class="input-group input-append">
                                         <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Pretraga proizvoda"></asp:TextBox>
                                         <span class="input-group-btn">
@@ -121,7 +121,7 @@
                                             <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-default"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></asp:LinkButton>
                                         </span>
                                     </div>
-                                <%--</asp:Panel>--%>
+                                </asp:Panel>
                             </div><!--search-->
                         </div>
                     </div><!--row-->

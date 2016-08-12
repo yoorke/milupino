@@ -50,6 +50,7 @@ namespace eshopv2
                     int productID;
                     int.TryParse(sb.ToString(), out productID);
                     loadProduct(productID);
+                    
                 }
             }
             else
@@ -74,6 +75,7 @@ namespace eshopv2
 
             lblBrand.Text = product.Brand.Name;
             lblName.Text = product.Name;
+            lblNamePrimary.Text = product.Name;
             lblDescription.Text = product.Description;
             lblPrice.Text = "MP cena: " + string.Format("{0:N2}", product.Price) + " din";
             lblWebPrice.Text = (product.Promotion == null) ? string.Format("{0:N2}", product.WebPrice) + " din" : string.Format("{0:N2}", product.Promotion.Price) + " din";
@@ -94,7 +96,7 @@ namespace eshopv2
             lnkCategory.NavigateUrl = "/proizvodi/" + product.Categories[0].Url;
             lnkCategory.Text = product.Categories[0].Name;
             ViewState["productUrl"] = product.Url;
-            
+            loadProductSliders(product.Brand, product.Categories[0]);
         }
 
         protected void btnCart_Click(object sender, EventArgs e)
@@ -122,7 +124,7 @@ namespace eshopv2
             tag = new HtmlMeta();
             tag.Attributes.Clear();
             tag.Attributes.Add("property", "og:title");
-            tag.Attributes.Add("content", ViewState["pageTitle"].ToString() + " " + ViewState["productDescription"].ToString());
+            tag.Attributes.Add("content", (ViewState["pageTitle"] != null ? ViewState["pageTitle"].ToString(): string.Empty) + " " + (ViewState["productDescription"] != null ? ViewState["productDescription"].ToString() : string.Empty));
             Header.Controls.Add(tag);
 
             tag = new HtmlMeta();
@@ -140,7 +142,7 @@ namespace eshopv2
             tag = new HtmlMeta();
             tag.Attributes.Clear();
             tag.Attributes.Add("property", "og:image");
-            tag.Attributes.Add("content", "http://www.milupino.rs" + ViewState["image"].ToString());
+            tag.Attributes.Add("content", "http://www.milupino.rs" + ViewState["image"] != null ? ViewState["image"].ToString() : string.Empty);
             Header.Controls.Add(tag);
 
             tag = new HtmlMeta();
@@ -159,6 +161,27 @@ namespace eshopv2
             link.Attributes.Add("rel", "canonical");
             link.Attributes.Add("href", "http://www.milupino.rs" + Page.Request.RawUrl);
             Header.Controls.Add(link);
+        }
+
+        private void loadProductSliders(Brand brand, Category category)
+        {
+            sliderBrand.NumberOfProducts = 6;
+            //sliderBrand.Products = new ProductBL().GetProducts(-1, -1, string.Empty, string.Empty, brand.BrandID);
+            sliderBrand.Products = new ProductBL().GetProductsForFirstPage(-1, brand.BrandID, 12, "Slučajni");
+            sliderBrand.Name = "Ostali proizvodi kompanije " + brand.Name;
+            ((Literal)sliderBrand.FindControl("lblPrev")).Text = @"<a id=""prev"" runat=""server"" href=""#carouselBrand"" data-slide=""prev""><img src=" + Page.ResolveUrl("~/images/prev_next.gif") + @" alt=""Prethodni"" /></a>";
+            ((Literal)sliderBrand.FindControl("lblNext")).Text = @"<a id=""next"" runat=""server"" href=""#carouselBrand"" data-slide=""next"" class=""next_button""><img src=" + Page.ResolveUrl("~/images/prev_next.gif") + @" alt=""Sledeći"" /></a>";
+            ((Literal)sliderBrand.FindControl("lblCarousel")).Text = @"<div id=""carouselBrand"" class=""carousel slide"" data-ride="""" runat=""server"">";
+            ((Literal)sliderBrand.FindControl("lblCarouselClose")).Text = "</div>";
+
+            sliderCategory.NumberOfProducts = 6;
+            //sliderCategory.Products = new ProductBL().GetProductsForCategory(category.CategoryID, true, true);
+            sliderCategory.Products = new ProductBL().GetProductsForFirstPage(category.CategoryID, -1, 12, "Slučajni");
+            sliderCategory.Name = category.Name;
+            ((Literal)sliderCategory.FindControl("lblPrev")).Text = @"<a id=""prev"" runat=""server"" href=""#carouselCategory"" data-slide=""prev""><img src=" + Page.ResolveUrl("~/images/prev_next.gif") + @" alt=""Prethodni"" /></a>";
+            ((Literal)sliderCategory.FindControl("lblNext")).Text = @"<a id=""next"" runat=""server"" href=""#carouselCategory"" data-slide=""next"" class=""next_button""><img src=" + Page.ResolveUrl("~/images/prev_next.gif") + @" alt=""Sledeći"" /></a>";
+            ((Literal)sliderCategory.FindControl("lblCarousel")).Text = @"<div id=""carouselCategory"" class=""carousel slide"" data-ride="""" runat=""server"">";
+            ((Literal)sliderCategory.FindControl("lblCarouselClose")).Text = "</div>";
         }
     }
 }

@@ -478,19 +478,20 @@ body
 	color:#ff3b3f;
 	font-weight:bold;
 	font-size:2em;
+    margin-left:50px;
 }
 
-#content .product-content h2
+#content .product-content h2.brandName
 {
 	color:#ff3b3f;
 	font-weight:bold;
 	font-size:1.5em;
-	margin-top:0;
+	margin-top:1.2em;
 }
 
-#content .product-content h3
+#content .product-content h3.productName
 {
-	color:#ff3b3f;
+	color:#999999;
 	font-weight:bold;
 	font-size:1.3em;
 }
@@ -572,6 +573,18 @@ body
 {
     position:absolute;
     top:20px;
+}
+
+#content .product-content .description{
+
+}
+
+#content .product-content .description h3, #content .product-content .specification h3{
+    color:#ff3b3f !important;
+}
+
+#content .product-content .description ul{
+    margin-left:2em;
 }
 
 #content .banner
@@ -898,7 +911,7 @@ body
 {
 	position:absolute;
 	top:105px;
-	font-weight:bold;
+	font-weight:normal;
 	font-size:1em;
 	width:100%;
 	text-align:center;
@@ -908,6 +921,7 @@ body
 {
 	position:absolute;
 	top:0px;
+    max-width:50px;
 }
 
 .product_fp .wrapper .price_div
@@ -1704,12 +1718,26 @@ table.orderItems {
 }
 
 .left-column ul.subcategories li a{
-    color:#444444;
+    color:#666666;
     margin:0.5em 0;
     display:block;
+    padding:0.2em;
 }
 
 .left-column ul.subcategories li a:hover{
     text-decoration:none;
-    color:#ff3b3f;
+    color:#444444;
+    background-color:#eeeeee;
+}
+
+.search_found{
+    background-color:#ffff00;
+}
+
+.thumbsImages input{
+    border:1px solid #eeeeee !important;
+}
+
+.thumbsImages input:hover{
+    border:1px solid #cccccc !important;
 }

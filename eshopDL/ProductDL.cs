@@ -355,17 +355,30 @@ namespace eshopDL
             return products;
         }
 
-        public List<Product> GetProductsForFirstPage(int categoryID, int numberOfProducts, string orderBy)
+        public List<Product> GetProductsForFirstPage(int categoryID, int brandID, int numberOfProducts, string orderBy)
         {
             List<Product> products = null;
             Product product = null;
 
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
             {
-                using (SqlCommand objComm = new SqlCommand("SELECT TOP " + numberOfProducts.ToString() + " product.productID, product.code, product.name, product.description, product.price, webPrice, brand.name, productImageUrl.imageUrl, promotionProduct.price, promotion.imageUrl, promotion.dateFrom, promotion.dateTo, category.name FROM product INNER JOIN brand ON product.brandID=brand.brandID INNER JOIN productImageUrl ON product.productID=productImageUrl.productID LEFT JOIN promotionProduct ON product.productID=promotionProduct.productID LEFT JOIN promotion ON promotionProduct.promotionID=promotion.promotionID INNER JOIN productCategory ON product.productID=productCategory.productID INNER JOIN category ON productCategory.categoryID=category.categoryID WHERE category.categoryID=@categoryID AND isActive=1 AND isApproved=1 AND productImageUrl.sortOrder=1 ORDER BY " + orderBy, objConn))
+                using (SqlCommand objComm = new SqlCommand("SELECT TOP " + numberOfProducts.ToString() + " product.productID, product.code, product.name, product.description, product.price, webPrice, brand.name, productImageUrl.imageUrl, promotionProduct.price, promotion.imageUrl, promotion.dateFrom, promotion.dateTo, category.name FROM product INNER JOIN brand ON product.brandID=brand.brandID INNER JOIN productImageUrl ON product.productID=productImageUrl.productID LEFT JOIN promotionProduct ON product.productID=promotionProduct.productID LEFT JOIN promotion ON promotionProduct.promotionID=promotion.promotionID INNER JOIN productCategory ON product.productID=productCategory.productID INNER JOIN category ON productCategory.categoryID=category.categoryID ", objConn))
                 {
                     objConn.Open();
-                    objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+                    bool exist = false;
+                    if(categoryID > 0)
+                    {
+                        objComm.CommandText += " WHERE category.categoryID=@categoryID";
+                        objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
+                        exist = true;
+                    }
+                    if(brandID > 0) {
+                        objComm.CommandText += ((exist) ? " AND " : " WHERE ") + " brand.brandID = @brandID";
+                        objComm.Parameters.Add("@brandID", SqlDbType.Int).Value = brandID;
+                    }
+                    objComm.CommandText += " AND isActive = 1 AND isApproved = 1 AND productImageUrl.sortOrder = 1";
+                    objComm.CommandText += " ORDER BY " + orderBy;
+                    //objComm.Parameters.Add("@categoryID", SqlDbType.Int).Value = categoryID;
                     using (SqlDataReader reader = objComm.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -1304,16 +1317,29 @@ namespace eshopDL
             return products;
         }
 
-        public List<Product> SearchProducts(string search)
+        public List<Product> SearchProducts(string search, string sort)
         {
             List<Product> products = new List<Product>();
             using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
             {
                 using (SqlCommand objComm = new SqlCommand("product_search", objConn))
                 {
+                    DataTable searchTable = new DataTable();
+                    searchTable.Columns.Add("search");
+                    DataRow newRow;
+                    foreach (string searchItem in search.Split(' '))
+                    { 
+                        newRow = searchTable.NewRow();
+                        newRow["search"] = searchItem;
+                        searchTable.Rows.Add(newRow);
+                    }
+
                     objConn.Open();
                     objComm.CommandType = CommandType.StoredProcedure;
-                    objComm.Parameters.Add("@search", SqlDbType.NVarChar, 50).Value = search;
+                    //objComm.Parameters.Add("@search", SqlDbType.NVarChar, 50).Value = search;
+                    objComm.Parameters.AddWithValue("@search", searchTable);
+                    objComm.Parameters.Add("@sort", SqlDbType.NVarChar, 50).Value = sort;
+                    objComm.Parameters[0].SqlDbType = SqlDbType.Structured;
                     using(SqlDataReader reader = objComm.ExecuteReader())
                     {
                         while (reader.Read())

@@ -195,7 +195,7 @@ namespace eshopBL
             return productDL.UpdatePriceAndStock(productID, price, webPrice, isInStock);
         }
 
-        public List<Product> GetProductsForFirstPage(int categoryID, int numberOfProducts, string orderBy)
+        public List<Product> GetProductsForFirstPage(int categoryID, int brandID, int numberOfProducts, string orderBy)
         {
             ProductDL productDL = new ProductDL();
             switch (orderBy)
@@ -204,7 +204,7 @@ namespace eshopBL
                 case "Ceni": { orderBy = "webPrice"; break; }
                 case "Slučajni": { orderBy = "NEWID()"; break; }
             }
-            return productDL.GetProductsForFirstPage(categoryID, numberOfProducts, orderBy);
+            return productDL.GetProductsForFirstPage(categoryID, brandID, numberOfProducts, orderBy);
         }
 
         public double GetMinPrice(int categoryID)
@@ -243,9 +243,9 @@ namespace eshopBL
             return new ProductDL().GetTop10Order();
         }
 
-        public List<Product> SearchProducts(string search)
+        public List<Product> SearchProducts(string search, string sort)
         {
-            return new ProductDL().SearchProducts(search);
+            return new ProductDL().SearchProducts(search, getSort(sort));
         }
     }
 }

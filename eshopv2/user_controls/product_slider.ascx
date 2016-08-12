@@ -15,33 +15,33 @@
     </div><!--col-->
 </div><!--row-->
 <div class="row margin-top-05">
-<div class="col-lg-12">
-<asp:Literal ID="lblCarousel" runat="server"></asp:Literal>
-<!--<div id="carouselexample" class="carousel slide" data-ride="" runat="server">-->
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <asp:Repeater ID="rptSlides" runat="server" OnItemDataBound="rptSlides_ItemDataBound">
-            <HeaderTemplate>
+    <div class="col-lg-12">
+        <asp:Literal ID="lblCarousel" runat="server"></asp:Literal>
+        <!--<div id="carouselexample" class="carousel slide" data-ride="" runat="server">-->
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <asp:Repeater ID="rptSlides" runat="server" OnItemDataBound="rptSlides_ItemDataBound">
+                <HeaderTemplate>
                 
-            </HeaderTemplate>
-            <ItemTemplate>
-                <div class="item" id="divHeader" runat="server">
-                    <div class="row padding-left-05 padding-right-05">
-                        <asp:Repeater ID="rptProducts" runat="server">
-                            <ItemTemplate>
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 padding-left-0 padding-right-0">
-                                    <product_fp:ProductFirstPage ID="productFirstPage1" runat="server" ProductItem='<%#Container.DataItem %>' />
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div><!--row-->
-                </div><!--item-->
-            </ItemTemplate>
-            <FooterTemplate>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <div class="item" id="divHeader" runat="server">
+                        <div class="row padding-left-05 padding-right-05">
+                            <asp:Repeater ID="rptProducts" runat="server">
+                                <ItemTemplate>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 padding-left-0 padding-right-0">
+                                        <product_fp:ProductFirstPage ID="productFirstPage1" runat="server" ProductItem='<%#Container.DataItem %>' />
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div><!--row-->
+                    </div><!--item-->
+                </ItemTemplate>
+                <FooterTemplate>
                     
-            </FooterTemplate>
-        </asp:Repeater>
-        
+                </FooterTemplate>
+            </asp:Repeater>
+        <asp:Literal ID="lblCarouselClose" runat="server"></asp:Literal>
                 <%--<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 padding-left-0 padding-right-0">
                     <product_fp:ProductFirstPage ID="product_fp1" runat="server" />
                 </div><!--col-->
@@ -77,7 +77,7 @@
                 </div><!--col-->
             </div><!--row-->
         </div><!--item-->--%>
-    </div><!--carusel-->
+        <%--</div><!--carusel-->--%>
 </div><!--carousel-->
 </div><!--col-->
 </div><!--row-->

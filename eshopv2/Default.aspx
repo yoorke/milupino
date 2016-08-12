@@ -85,39 +85,39 @@
             <!--PRODUCT SLIDER-->
             <div class="row product_slider">
                 <div class="col-lg-12">
-                <asp:Repeater ID="rptPromotions" runat="server" OnItemDataBound="rptPromotions_ItemDataBound">
-                    <HeaderTemplate>
-                        <!--<div class="row">
-                            <div class="col-lg-12">-->
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <asp:HiddenField ID="lblPromotionID" runat="server" Value='<%#Eval("promotionID") %>' />
-                        <!--<h2><asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label></h2>-->
-                        <ps:ProductSlider ID="productSlider1" runat="server" />
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <!--</div><!---col
-                        </div>-->
-                    </FooterTemplate>
-                </asp:Repeater>
+                    <asp:Repeater ID="rptPromotions" runat="server" OnItemDataBound="rptPromotions_ItemDataBound">
+                        <HeaderTemplate>
+                            <!--<div class="row">
+                                <div class="col-lg-12">-->
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:HiddenField ID="lblPromotionID" runat="server" Value='<%#Eval("promotionID") %>' />
+                            <!--<h2><asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label></h2>-->
+                            <ps:ProductSlider ID="productSlider1" runat="server" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <!--</div><!---col
+                            </div>-->
+                        </FooterTemplate>
+                    </asp:Repeater>
             
-                <asp:Repeater ID="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
-                    <HeaderTemplate>
-                        <!--<div class="row">
-                            <div class="col-lg-12">-->
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <asp:HiddenField ID="lblCategoryID" runat="server" Value='<%#Eval("categoryID") %>' />
-                        <asp:HiddenField ID="lblNumberOfProducts" runat="server" Value='<%#Eval("numberOfProducts") %>' />
-                        <asp:HiddenField ID="lblFirstPageOrderBy" runat="server" Value='<%#Eval("firstPageOrderBy") %>' />
+                    <asp:Repeater ID="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
+                        <HeaderTemplate>
+                            <!--<div class="row">
+                                <div class="col-lg-12">-->
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:HiddenField ID="lblCategoryID" runat="server" Value='<%#Eval("categoryID") %>' />
+                            <asp:HiddenField ID="lblNumberOfProducts" runat="server" Value='<%#Eval("numberOfProducts") %>' />
+                            <asp:HiddenField ID="lblFirstPageOrderBy" runat="server" Value='<%#Eval("firstPageOrderBy") %>' />
                     
-                        <ps:ProductSlider ID="productSlider2" runat="server" />
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <!--</div>
-                        </div>-->
-                    </FooterTemplate>
-                </asp:Repeater>
+                            <ps:ProductSlider ID="productSlider2" runat="server" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <!--</div>
+                            </div>-->
+                        </FooterTemplate>
+                    </asp:Repeater>
                 </div><!--col-->
             </div><!--product-slider-->
            

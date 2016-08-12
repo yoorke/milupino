@@ -14,7 +14,7 @@
         </div><!--row-->
 
         <%--<div class="row">--%>
-            <asp:Panel ID="pnlThumbs" runat="server" CssClass="thumbs row"></asp:Panel>
+            <asp:Panel ID="pnlThumbs" runat="server" CssClass="thumbsImages row"></asp:Panel>
         <%--</div><!--row-->--%>
     <%--</ContentTemplate>
 </asp:UpdatePanel>--%>

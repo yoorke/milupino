@@ -20,6 +20,7 @@ namespace eshopv2.user_controls
         private List<Product> _products;
         private int _numberOfProducts;
         private int _slidesCount;
+        private string _name;
 
         public List<Product> Products
         {
@@ -35,6 +36,16 @@ namespace eshopv2.user_controls
         {
             get { return _numberOfProducts; }
             set { _numberOfProducts = value; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                setName();
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -78,6 +89,11 @@ namespace eshopv2.user_controls
                 rptProducts.DataSource = e.Item.DataItem;
                 rptProducts.DataBind();
             }
+        }
+
+        private void setName()
+        {
+            lblName.Text = _name;
         }
     }
 }

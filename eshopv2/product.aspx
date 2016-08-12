@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/eshop2.Master" AutoEventWireup="true" CodeBehind="product.aspx.cs" Inherits="eshopv2.product" Title="Untitled Page" %>
 <%@ Register Src="user_controls/ProductImages.ascx" TagName="ProductImages" TagPrefix="uc1" %>
 <%@ Register Src="user_controls/Banner.ascx" TagName="Banner" TagPrefix="banner" %>
+<%@ Register Src="user_controls/product_slider.ascx" TagName="productSlider" TagPrefix="productSlider" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!--<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>-->
     <link rel="stylesheet" type="text/css" media="all" href="<%# ResolveUrl("~/css/jquery.lightbox-0.5.css")  %>" />
@@ -8,23 +9,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--BANNER-->
-    <div class="col-xs-2 left-column visible-lg visible-md">
+    <%--<div class="col-xs-2 left-column visible-lg visible-md">
         <banner:Banner ID="banner1" runat="server" Position="FP1" />
         <banner:Banner ID="banner2" runat="server" Position="FP2" />
-    </div><!--col-banner-->
+    </div><!--col-banner-->--%>
             
     <!--MAIN CONTENT-->
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 main-content product-content">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 main-content product-content">
         <!--images, name, price-->
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-6">
+                <h1><asp:Literal ID="lblNamePrimary" runat="server"></asp:Literal></h1>
                 <uc1:ProductImages ID="priProductImages" runat="server" />
                 <asp:Image ID="imgPromotion" runat="server" Visible="false" CssClass="imgPromotion" />
             </div><!--col-->
-            <div class="col-sm-7">
+            <div class="col-sm-6">
                 <asp:HiddenField ID="lblProductID" runat="server" />
-                <h1><asp:Literal ID="lblBrand" runat="server"></asp:Literal></h1>
-                <h2><asp:Literal ID="lblName" runat="server"></asp:Literal></h2>
+                <h2 class="brandName"><asp:Literal ID="lblBrand" runat="server"></asp:Literal></h2>
+                <h3 class="productName"><asp:Literal ID="lblName" runat="server"></asp:Literal></h3>
                 <p>Pogledajte i ostale proizvode iz kategorije <asp:HyperLink ID="lnkCategory" runat="server" CssClass="underline"></asp:HyperLink></p>
                 
                 <!--Kredit i rate-->
@@ -104,7 +106,7 @@
         
         
         <!--description-->
-        <div class="row">
+        <div class="row description">
             <div class="col-lg-12">
                 <h3>Opis</h3>
                 <asp:Literal ID="lblDescription" runat="server"></asp:Literal>
@@ -112,12 +114,23 @@
         </div><!--row-->
         
         <!--specification-->
-        <div class="row">
+        <div class="row margin-bottom-2">
             <div class="col-lg-12 specification">
                 <h3>Specifikacije i detalji</h3>
                 <asp:Literal ID="lblSpecification" runat="server"></asp:Literal>
             </div><!--col-->
         </div><!--row-->
+
+        <div class="row product_slider">
+            <div class="col-lg-12">
+                <productSlider:productSlider ID="sliderBrand" runat="server" />
+            </div>
+        </div>
+        <div class="row product_slider">
+            <div class="col-lg-12">
+                <productSlider:productSlider ID="sliderCategory" runat="server" />
+            </div>
+        </div>
     </div><!--col main-->
     <div class="messageBoxWrapper" id="wishListMessageBox" style="display:none">
         <div class="messageBox" id="wishListMessageBoxText">

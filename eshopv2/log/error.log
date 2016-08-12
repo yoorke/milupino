@@ -1554,3 +1554,123 @@ http://localhost:58675/administrator/customPage.aspx?customPageID=2
 ::1
 http://localhost:58675/administrator/customPage.aspx?customPageID=2
 
+11.8.2016. 8:56:30 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_m4xnzsbo.17.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/product.aspx
+::1
+http://localhost:58675/product.aspx
+
+11.8.2016. 9:25:08 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_cg31jj2f.17.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/product.aspx
+127.0.0.1
+http://localhost:58675/product.aspx
+
+11.8.2016. 11:04:19 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_c4ys2kvm.17.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/product.aspx
+::1
+http://localhost:58675/product.aspx
+
+11.8.2016. 11:25:45 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_tcfvbrj4.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/proizvodi/kolica/bertoni-kolica-peggy-roma-crvena-972
+::1
+http://localhost:58675/proizvodi/kolica/bertoni-kolica-peggy-roma-crvena-972
+
+11.8.2016. 11:26:23 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_tcfvbrj4.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/proizvodi/kolica/bertoni-kolica-peggy-roma-crvena-972
+::1
+http://localhost:58675/proizvodi/kolica/bertoni-kolica-peggy-roma-crvena-972
+
+11.8.2016. 11:46:27 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_j5xyafki.14.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/product.aspx
+127.0.0.1
+http://localhost:58675/product.aspx
+
+11.8.2016. 12:08:06 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_reavpwfx.14.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/product.aspx
+::1
+http://localhost:58675/product.aspx
+
+12.8.2016. 6:36:50 - 0 - Exception of type 'System.Web.HttpUnhandledException' was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.product_aspx.ProcessRequest(HttpContext context) in c:\Users\djurisic.YT\AppData\Local\Temp\Temporary ASP.NET Files\root\fd5b676e\c2f6497b\App_Web_ue0tibq1.14.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Object reference not set to an instance of an object.
+/product.aspx
+::1
+http://localhost:58675/product.aspx
+

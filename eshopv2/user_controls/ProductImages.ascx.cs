@@ -50,7 +50,7 @@ namespace eshopv2.user_controls
                         //image.Click += new ImageClickEventHandler(image_Click);
                         image.OnClientClick = "changeImg(this.src);return false;";
 
-                        pnlThumbs.Controls.Add(new LiteralControl("<div class='col-lg-4'>"));
+                        pnlThumbs.Controls.Add(new LiteralControl("<div class='col-lg-3'>"));
                         pnlThumbs.Controls.Add(image);
                         pnlThumbs.Controls.Add(new LiteralControl("</div>"));
                     }

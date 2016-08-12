@@ -22,22 +22,13 @@ namespace eshopv2 {
         protected global::System.Web.UI.WebControls.Literal canonicalUrl;
         
         /// <summary>
-        /// banner1 control.
+        /// lblNamePrimary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::eshopv2.user_controls.Banner banner1;
-        
-        /// <summary>
-        /// banner2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::eshopv2.user_controls.Banner banner2;
+        protected global::System.Web.UI.WebControls.Literal lblNamePrimary;
         
         /// <summary>
         /// priProductImages control.
@@ -182,5 +173,23 @@ namespace eshopv2 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblSpecification;
+        
+        /// <summary>
+        /// sliderBrand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::eshopv2.user_controls.product_slider sliderBrand;
+        
+        /// <summary>
+        /// sliderCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::eshopv2.user_controls.product_slider sliderCategory;
     }
 }
