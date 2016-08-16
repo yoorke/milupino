@@ -71,7 +71,7 @@
                 <div class="col-sm-4 text-center">
                     <div class="row">
                         <div class="col-lg-12">
-                            <span>Call centar <small>Zrenjanin</small>: <strong>060 515 4110</strong></span>
+                            <span>Call centar Zrenjanin: <strong>060 515 4110</strong></span>
                         </div>
                     </div>
                     <%--<div class="row">
@@ -563,6 +563,8 @@
         $('.cd-dropdown .cd-close').click(function () {
             $('#mainMenuVerticalBackground').hide();
         })
+
+        
     </script>
     
     <asp:ContentPlaceHolder ID="ContentPlaceHolderFooter" runat="server"></asp:ContentPlaceHolder>

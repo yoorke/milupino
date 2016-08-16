@@ -91,4 +91,9 @@ jQuery(document).ready(function($){
 		  	})
 		});
 	}
+	$('#mainMenuVerticalBackground').click(function (event) {
+	    event.preventDefault();
+	    toggleNav();
+	    $('#mainMenuVerticalBackground').hide();
+	})
 });

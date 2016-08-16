@@ -27,7 +27,10 @@ namespace eshopv2
             catch
             {
                 lblStatus.Text = "Greška prilikom slanja";
+                
             }
+            lblStatus.Visible = true;
+            rowStatus.Visible = true;
         }
     }
 }

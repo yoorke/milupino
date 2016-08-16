@@ -478,7 +478,7 @@ body
 	color:#ff3b3f;
 	font-weight:bold;
 	font-size:2em;
-    margin-left:50px;
+    /*margin-left:50px;*/
 }
 
 #content .product-content h2.brandName
@@ -572,7 +572,8 @@ body
 #content .product-content .imgPromotion
 {
     position:absolute;
-    top:20px;
+    top:50px;
+    width:50px;
 }
 
 #content .product-content .description{

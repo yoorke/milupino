@@ -45,10 +45,10 @@
                 
             </div>
         </div>
-        <div class="row">
+        <div class="row" runat="server" visible="false" id="rowStatus">
             <div class="col-lg-12">
                 <div class="status">
-                    <asp:Literal ID="lblStatus" runat="server"></asp:Literal>
+                    <asp:Literal ID="lblStatus" runat="server" Visible="false"></asp:Literal>
                 </div>
             </div>
         </div>

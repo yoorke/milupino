@@ -4,11 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-xs-2 left-column visible-md visible-lg">
+    <%--<div class="col-xs-2 left-column visible-md visible-lg">
         <banner:Banner id="banner1" runat="server" Position="FP1" />
         <banner:Banner ID="banner2" runat="server" Position="FP2" />
-    </div>
-    <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12 main-content first-page">
+    </div>--%>
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 main-content first-page">
         <div class="row">
             <div class="col-lg-12">
                 <h1><asp:Literal  ID="lblPromotionName" runat="server"></asp:Literal></h1>

@@ -22,7 +22,7 @@ namespace eshopDL
                     objComm.CommandType = CommandType.StoredProcedure;
                     objComm.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = categoryBanner.Name;
                     objComm.Parameters.Add("@imageUrl", SqlDbType.NVarChar, 50).Value = categoryBanner.ImageUrl;
-                    objComm.Parameters.Add("@url", SqlDbType.NVarChar, 50).Value = categoryBanner.Url;
+                    objComm.Parameters.Add("@url", SqlDbType.NVarChar, 100).Value = categoryBanner.Url;
 
                     status = int.Parse(objComm.ExecuteScalar().ToString());
                 }
