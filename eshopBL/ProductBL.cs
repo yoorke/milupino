@@ -13,7 +13,7 @@ namespace eshopBL
         public Product GetProduct(int productID, string url, bool count)
         {
             ProductDL productDL = new ProductDL();
-            return productDL.GetProduct(productID, url, count);
+            return productDL.GetProduct(productID, url, count, string.Empty);
         }
 
         /*public List<Product> GetProduct(string code)
@@ -246,6 +246,46 @@ namespace eshopBL
         public List<Product> SearchProducts(string search, string sort)
         {
             return new ProductDL().SearchProducts(search, getSort(sort));
+        }
+
+        public bool SaveProductFromExternalApplication(string barcode, string name, double quantity, double price)
+        {
+            Product product = new ProductDL().GetProduct(-1, string.Empty, false, barcode);
+            
+            if(product != null)
+            {
+                product.Name = name;
+                product.Price = price;
+                product.WebPrice = price;
+                product.IsInStock = quantity > 0;
+            }
+            else
+            {
+                product = new Product();
+                product.Code = barcode;
+                product.Name = name;
+                product.Price = price;
+                product.WebPrice = price;
+
+                product.Brand = new Brand(0, "Nepoznat");
+                product.Categories = new List<Category>();
+                product.Categories.Add(new Category(0, "Nepoznat", null, string.Empty, string.Empty, 0, 0, 0, string.Empty, -1));
+                product.Description = string.Empty;
+                product.Ean = string.Empty;
+                product.Images = new List<string>();
+                product.Images.Add("000.jpg");
+                product.IsActive = false;
+                product.IsApproved = false;
+                product.IsInStock = quantity > 0;
+                product.IsLocked = false;
+                product.Specification = string.Empty;
+                product.SupplierCode = string.Empty;
+                product.SupplierID = 0;
+                product.VatID = 4;
+            }
+            int status = SaveProduct(product);
+
+            return status > 0;
         }
     }
 }

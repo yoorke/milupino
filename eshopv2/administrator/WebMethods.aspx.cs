@@ -70,5 +70,12 @@ namespace eshopv2.administrator
                 throw;
             }
         }
+
+        [WebMethod()]
+        public static string SaveProductFromExternalApplication(string barcode, string name, string quantity, string price)
+        {
+            bool status = new ProductBL().SaveProductFromExternalApplication(barcode, name, double.Parse(quantity), double.Parse(price));
+            return status ? "Saved" : "Error";
+        }
     }
 }

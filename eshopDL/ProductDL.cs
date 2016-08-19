@@ -422,6 +422,26 @@ namespace eshopDL
             return products;
         }
 
+        public int GetProductIDByBarcode(string barcode)
+        {
+            int productID = -1;
+            using (SqlConnection objConn = new SqlConnection(WebConfigurationManager.ConnectionStrings["eshopConnectionString"].ConnectionString))
+            {
+                using (SqlCommand objComm = new SqlCommand("SELECT productID FROM product WHERE code = @barcode"))
+                {
+                    objConn.Open();
+                    objComm.CommandType = CommandType.StoredProcedure;
+                    objComm.Parameters.Add("@barcode", SqlDbType.NVarChar, 50).Value = barcode;
+                    using (SqlDataReader reader = objComm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            productID = reader.GetInt32(0);
+                    }
+                }
+            }
+            return productID;
+        }
+
         #endregion
 
         #region SaveProduct
@@ -898,7 +918,7 @@ namespace eshopDL
 
         #region GetProduct
 
-        public Product GetProduct(int productID, string url, bool count)
+        public Product GetProduct(int productID, string url, bool count, string code)
         {
             Product product = null;
 
@@ -919,6 +939,11 @@ namespace eshopDL
                         {
                             objComm.CommandText += " WHERE url=@url";
                             objComm.Parameters.Add("@url", SqlDbType.NVarChar, 100).Value = url;
+                        }
+                        else if(code != string.Empty)
+                        {
+                            objComm.CommandText += " WHERE code = @code";
+                            objComm.Parameters.Add("@code", SqlDbType.NVarChar, 50).Value = code;
                         }
 
                         using (SqlDataReader reader = objComm.ExecuteReader())
